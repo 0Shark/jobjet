@@ -1,13 +1,97 @@
-version: "3.1"
+version: "0.1"
 
 rules:
 
-- rule: Say goodbye anytime the user says goodbye
+- rule: Say hello on first conversation 
   steps:
-  - intent: goodbye
+  - intent: greet
+  - action: utter_greet
+
+- rule: Say goodbye on exit 
+  steps:
+  - intent: exit
   - action: utter_goodbye
 
-- rule: Say 'I am a bot' anytime the user challenges
+- rule: Register new user
   steps:
-  - intent: bot_challenge
-  - action: utter_iamabot
+  - intent: register
+  - action: register_form
+  - active_loop: register_form
+
+- rule: Login existing user
+  steps:
+  - intent: login
+  - action: login_form
+  - active_loop: login_form
+
+- rule: Check login error count
+  steps:  
+  - intent: check_error_count
+  - action: check_error_count
+
+- rule: Set persona
+  steps:
+  - intent: set_persona
+  - action: set_persona
+
+- rule: Post a job
+  steps:
+  - intent: ask_post_update
+  - action: post_job_form
+  - active_loop: post_job_form
+  - action: utter_job_posted
+
+- rule: Update existing job
+  steps:
+  - intent: ask_post_update
+  - action: update_job_form    
+  - active_loop: update_job_form
+  - action: utter_job_updated
+
+- rule: Search candidates by category
+  steps:
+  - intent: search_candidate_category
+  - action: search_candidates
+  - slot_was_set:
+    - requested_slot: category 
+  - action: utter_candidates
+
+- rule: Validate category
+  steps: 
+  - intent: check_valid_category
+  - action: validate_category
+  - slot_was_set:
+    - requested_slot: category
+
+- rule: Retrieve job listings
+  steps:
+  - intent: retrieve_listings
+  - action: get_listings
+  - action: utter_listings
+
+- rule: Send interview details  
+  steps:
+  - intent: inform_candidate_interview
+  - slot_was_set:
+    - requested_slot: candidate_id
+  - action: send_interview_email
+  - action: utter_email_sent
+
+- rule: Get candidate ID
+  steps:  
+  - intent: ask_candidate_id
+  - action: get_candidate_id
+  - slot_was_set:
+    - requested_slot: candidate_name
+
+- rule: Check valid candidate ID
+  steps:
+  - intent: check_valid_candidate_id
+  - action: validate_candidate_id
+  - slot_was_set:
+    - requested_slot: candidate_id  
+
+- rule: Invalid input
+  steps:
+  - intent: invalid_id OR invalid_category
+  - action: utter_invalid_input
