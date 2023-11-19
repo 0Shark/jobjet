@@ -2,7 +2,7 @@ version: "0.1"
 
 stories:
 
-- story: student happy path
+- story: student path
   steps:  
   - intent: greet
   - action: utter_greet
@@ -28,7 +28,7 @@ stories:
   - intent: exit
   - action: utter_goodbye
 
-- story: job poster happy path
+- story: job poster path
   steps:
   - intent: greet
   - action: utter_greet
@@ -55,7 +55,7 @@ stories:
   - intent: exit
   - action: utter_goodbye
 
-- story: recruiter happy path
+- story: recruiter path
   steps:
   - intent: greet
   - action: utter_greet
