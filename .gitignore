@@ -18,7 +18,6 @@ venv
 .mypy_cache/
 dist/
 pip-wheel-metadata
-server/
 scala/
 mongodb/
 .cache/
