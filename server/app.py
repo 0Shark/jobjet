@@ -87,7 +87,7 @@ def register():
         return {"status": "error", "message": "Username already exists"}
 
     user_id = str(uuid.uuid4())  # Generate a random UUID for the user
-    users[username] = {"name": username, "password": password, "roles": roles, "id": user_id}
+    users[user_id] = {"name": username, "password": password, "roles": roles}
     save_users(users)
 
     return {"status": "success", "message": "User created", "user_id": user_id, "roles": roles}
@@ -101,8 +101,8 @@ def login():
     roles=data.get("roles")
 
     if username in users:
-        if users[username]["password"] == password:
-            return {"status": "success", "message": "Login successful", "user_id": users[username]["id"], "roles": users[username]["roles"]}
+        if users[user_id]["password"] == password:
+            return {"status": "success", "message": "Login successful", "user_id": users[user_id]["id"], "roles": users[user_id]["roles"]}
         else:
             return {"status": "error", "message": "Incorrect password"}
     else:
