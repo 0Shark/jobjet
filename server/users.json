@@ -2,5 +2,11 @@
     "f7500710-b9b5-4271-a486-e8aeee4b8e42": {
         "name": "admin",
         "password": "admin"
+    },
+    "john_doe": {
+        "name": "john_doe",
+        "password": "password123",
+        "roles": "student",
+        "id": "ed0cd913-a0b5-4de3-abcf-71852955cc1e"
     }
 }
