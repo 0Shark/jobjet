@@ -20,6 +20,20 @@ intents:
 - invalid_id
 - check_valid_candidate_id
 
+#slots given by the registration/login 
+slots:
+  username:
+    type: text
+  password:
+    type: text
+
+#actions where the login/registration/job listing is implemented
+
+actins:
+  -action_register_login
+
+
+
 responses:
   utter_greet:
   - text: "Hello! Welcome to the job search assistant."
@@ -47,6 +61,18 @@ responses:
 
   utter_invalid_input:
   - text: "Sorry, that input is invalid. Please try again."
+
+  utter_registration_successful:
+    - text: "Registration successful."
+
+  utter_registration_failed:
+    - text: "Registration failed. Please try again."
+
+  utter_login_successful:
+    - text: "Login successful. User ID: {user_id}"
+
+  utter_login_failed:
+    - text: "Login failed. Please check your credentials."
 
   
 
