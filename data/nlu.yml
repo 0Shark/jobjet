@@ -1,4 +1,4 @@
-version: "0.1" 
+version: "3.1"
 
 nlu:
 
@@ -7,9 +7,9 @@ nlu:
     - hey
     - hello
     - hi
-    - hello there  
+    - hello there
     - good morning
-    - good evening 
+    - good evening
     - moin
     - hey there
     - let's go
@@ -20,7 +20,7 @@ nlu:
 
 - intent: goodbye
   examples: |
-    - cu 
+    - cu
     - good by
     - cee you later
     - good night
@@ -28,20 +28,19 @@ nlu:
     - goodbye
     - have a nice day
     - see you around
-    - bye bye  
+    - bye bye
     - see you later
 
-- intent: affirm 
+- intent: affirm
   examples: |
     - yes
     - y
-    - indeed 
+    - indeed
     - of course
     - that sounds good
     - correct
 
-
-- intent: register
+- intent: action_register_login
   examples: |
     - I want to register
     - Sign me up
@@ -49,187 +48,22 @@ nlu:
     - register
     - registration
 
-- intent: login
-  examples: |  
+- intent: action_register_login
+  examples: |
     - I want to login
-    - Sign me in 
+    - Sign me in
     - Let me log in
     - login
     - log in
-
-- intent: check_error_count
-  examples: |
-    - Check error count
-    - How many login attempts do I have left?
-    - What is my error count?
-
-- intent: ask_credentials
-  examples: |
-    - What are my login credentials?
-    - Can you confirm my username and password?
-    - What username and password do I use to login?
-
-- intent: ask_user_id
-  examples: |
-    - What is my user ID?
-    - Can you check my user ID?
-    - I forgot my user ID, can you look it up?
-
-- intent: check_user_id
-  examples: |  
-    - Is this the right user ID? 
-    - Let me know if this user ID is correct.
-    - Can you validate this user ID?
-
-- intent: generate_user_id
-  examples: |
-    - I need a new user ID
-    - Can you create a user ID for me?
-    - Please generate a user ID.
-
-- intent: wrong_user_id
-  examples: |
-    - That user ID is not correct.
-    - This user ID doesn't match my account.
-    - That user ID is wrong.
-
-- intent: set_persona  
-  examples: |
-    - I'm a student looking for a job
-    - I want to post jobs 
-    - I'm a recruiter
-    -I want to find some talents
-
-- intent: student
-  examples: |
-    - I'm a student
-    - Student account
-    - Create student account
-    - I am looking for a job
-
-- intent: recruiter
-  examples: |
-    - I'm a recruiter
-    - Recruiter account
-    - Create recruiter account
-    - I am looking for some talents
-
-- intent: job_poster
-  examples: |
-    - I want to post jobs
-    - Job poster account
-    - Create account to post jobs
-
-- intent: ask_job_category
-  examples: |
-    - What types of jobs are available?
-    - What categories can I search for?
-    - What job categories do you have?
-
-- intent: ask_post_update
-  examples: |
-    - Can I post a new job?
-    - How do I add a new job listing? 
-    - I want to update an existing job posting.
-    - How do I modify a job I already posted?
-
-- intent: ask_recruiter_view
-  examples: |
-    - Can I view candidates for [category] jobs?
-    - I want to see applicants for [category] positions.
-    - Let me browse [category] job seekers.
-    - Show me [category] candidates to contact.
-
-- intent: search_candidate_category 
-  examples: |
-    - Show me candidates for [category] jobs
-    - Find candidates in [category]
-    - Search for job seekers in [category]
-    - I want to see [category] applicants
-
-- intent: invalid_category
-  examples: |  
-    - That category doesn't exist
-    - Invalid category
-    - No such category  
-
-- intent: ask_changes
-  examples: |
-    - Let me update that
-    - I need to change some details
-    - Can I modify this listing?
-
-- intent: ask_job_details
-  examples: |
-    - What details do you need for the job post?
-    - What information should I provide to add a job?
-    - What job details are required to post a new listing?  
-
-- intent: check_valid_category
-  examples: |
-    - Is [category] a valid job category?
-    - Do you have jobs under [category]?
-    - Can I post jobs in [category]?  
-
-- intent: inform_candidate_interview
-  examples: |
-    - Please let [candidate ID] know about the interview
-    - Inform [candidate ID] they have an interview
-    - Send interview details to [candidate ID]
-
-- intent: post_job
-  examples: |  
-    - Post this job listing
-    - Add this job posting
-    - Submit this new job  
-
-- intent: update_job_posting
-  examples: |
-    - Update this existing job 
-    - Modify this job posting
-    - Save changes to this job listing
-
-- intent: ask_candidate_id
-  examples: |
-    - What is the candidate ID for [name]?
-    - Can you give me the ID for [name]?
-    - I need the candidate ID for [name].
-
-- intent: retrieve_listings
-  examples: |
-    - Show me recent job posts
-    - What new jobs have been listed?
-    - Retrieve latest job listings
-
-- intent: exit
-  examples: |
-    - Quit
-    - Exit
-    - Stop
-    - I'm done
-    - Goodbye
-    - Bye
-  
-- intent: invalid_id
-  examples: |  
-    - That ID is not valid
-    - Wrong ID
-    - Invalid candidate ID
-
-- intent: check_valid_candidate_id
-  examples: |
-    - Is this a valid candidate ID?
-    - Can you check if this candidate ID exists?
-    - Does this ID belong to an actual candidate?
 
 - regex: candidate_id
   examples: |
     - [A-Z]{2}[0-9]{4}
 
 - lookup: categories
-  examples: |  
+  examples: |
     - engineering
-    - marketing 
+    - marketing
     - sales
     - customer service
     - accounting

@@ -1,9 +1,3 @@
-# This files contains your custom actions which can be used to run
-# custom Python code.
-#
-# See this guide on how to implement these action:
-# https://rasa.com/docs/rasa/custom-actions
-
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
@@ -14,9 +8,9 @@ class ActionRegisterLogin(Action):
         return "action_register_login"
     
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        username = tracker.get_slot("username")
-        password = tracker.get_slot("password")
-        roles = tracker.get_slot("roles")
+        username = tracker.latest_message.get("text")
+        password = tracker.latest_message.get("password")
+        roles = tracker.latest_message.get("roles")
 
         register_url = "http://localhost:5000/register"
         login_url = "http://localhost:5000/login"

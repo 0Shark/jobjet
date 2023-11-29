@@ -1,8 +1,31 @@
-version: "0.1"
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - action_register_login
+  - candidate_id
+
+responses:
+  utter_greet:
+    - text: "Hey! How are you?"
+
+  utter_did_that_help:
+    - text: "Did that help you?"
+
+  utter_happy:
+    - text: "Great, carry on!"
+
+  utter_goodbye:
+    - text: "Bye"
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
 
 actions:
   - action_register_login
 
-templates:
-  utter_greet:
-    - text: "Hello! How can I assist you today?"
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
