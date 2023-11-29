@@ -3,26 +3,25 @@ version: "0.1"
 stories:
 
 - story: student path
-  steps:  
+  steps:
   - intent: greet
   - action: utter_greet
   - intent: register
   - action: register_form 
-    - active_loop: register_form
+  - active_loop: register_form
   - intent: affirm
   - action: utter_account_created
   - intent: login
   - action: login_form
-    - active_loop: login_form
+  - active_loop: login_form
   - intent: affirm
   - action: utter_login_success
   - intent: set_persona
-    - student
-  - action: set_persona  
+  - action: set_persona
   - intent: search_candidate_category
   - action: search_candidates
     - slot_was_set:
-      - requested_slot: category
+        requested_slot: category
   - intent: affirm
   - action: utter_candidates
   - intent: exit
@@ -34,22 +33,21 @@ stories:
   - action: utter_greet
   - intent: register
   - action: register_form
-    - active_loop: register_form
+  - active_loop: register_form
   - intent: affirm
   - action: utter_account_created
   - intent: login
   - action: login_form
-    - active_loop: login_form
+  - active_loop: login_form
   - intent: affirm
   - action: utter_login_success
   - intent: set_persona  
-    - job_poster
   - action: set_persona
   - intent: ask_job_details
   - action: explain_job_details  
   - intent: ask_post_update
   - action: post_job_form
-    - active_loop: post_job_form
+  - active_loop: post_job_form
   - intent: affirm
   - action: utter_job_posted  
   - intent: exit
@@ -61,22 +59,21 @@ stories:
   - action: utter_greet
   - intent: login
   - action: login_form
-    - active_loop: login_form
+  - active_loop: login_form
   - intent: affirm
   - action: utter_login_success
   - intent: set_persona
-    - recruiter
   - action: set_persona
   - intent: search_candidate_category
   - action: search_candidates
     - slot_was_set:
-      - requested_slot: category
+        requested_slot: category
   - intent: affirm
   - action: utter_candidates
   - intent: ask_candidate_id
   - action: get_candidate_id
     - slot_was_set:
-      - requested_slot: candidate_name 
+        requested_slot: candidate_name 
   - intent: inform_candidate_interview
   - action: send_interview_email
   - action: utter_email_sent
@@ -89,14 +86,14 @@ stories:
   - action: utter_greet  
   - intent: login
   - action: login_form
-    - active_loop: login_form
+  - active_loop: login_form
   - intent: affirm
   - action: utter_login_success
   - intent: ask_post_update
   - action: update_job_form
     - active_loop: update_job_form 
-  - slot_was_set:
-    - requested_slot: job_id
+      slot_was_set:
+        requested_slot: job_id
   - intent: affirm
   - action: utter_job_updated
   - intent: exit
@@ -108,16 +105,15 @@ stories:
   - action: utter_greet
   - intent: login
   - action: login_form
-    - active_loop: login_form
+  - active_loop: login_form
   - intent: affirm  
   - action: utter_login_success
   - intent: set_persona
-    - student
   - action: set_persona
   - intent: search_candidate_category
   - action: search_candidates
     - slot_was_set:
-      - requested_slot: category
+        requested_slot: category
   - intent: affirm
   - action: utter_candidates
   - intent: exit
@@ -129,16 +125,15 @@ stories:
   - action: utter_greet
   - intent: login
   - action: login_form
-    - active_loop: login_form
+  - active_loop: login_form
   - intent: affirm
   - action: utter_login_success
   - intent: set_persona
-    - recruiter
   - action: set_persona
   - intent: search_candidate_category
   - action: search_candidates  
     - slot_was_set:
-      - requested_slot: category
+        requested_slot: category
   - intent: affirm
   - action: utter_candidates
   - intent: exit
@@ -150,13 +145,13 @@ stories:
   - action: utter_greet
   - intent: login
   - action: login_form
-    - active_loop: login_form 
+  - active_loop: login_form 
   - intent: affirm
   - action: utter_login_success
   - intent: search_candidate_category
   - action: search_candidates
     - slot_was_set:
-      - requested_slot: category
+        requested_slot: category
   - intent: invalid_category 
   - action: utter_invalid_input
   - intent: exit

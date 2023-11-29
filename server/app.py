@@ -98,6 +98,7 @@ def login():
 
     username = data.get("username")
     password = data.get("password")
+    user_id = data.get("user_id")
     roles=data.get("roles")
 
     if username in users:

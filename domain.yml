@@ -20,19 +20,23 @@ intents:
 - invalid_id
 - check_valid_candidate_id
 
-#slots given by the registration/login 
+
 slots:
   username:
     type: text
+    influence_conversation: true
+    mappings:
+      - entity: your_username_entity
+
   password:
     type: text
-
-#actions where the login/registration/job listing is implemented
-
-actins:
-  -action_register_login
+    influence_conversation: true
+    mappings:
+      - entity: your_password_entity
 
 
+actions:
+  - action_register_login
 
 responses:
   utter_greet:
@@ -73,8 +77,6 @@ responses:
 
   utter_login_failed:
     - text: "Login failed. Please check your credentials."
-
-  
 
 session_config:
   session_expiration_time: 60
