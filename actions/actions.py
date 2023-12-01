@@ -17,25 +17,31 @@ class ActionRegisterLogin(Action):
         username=tracker.get_slot("username")
         password=tracker.get_slot("password")
         roles=tracker.get_slot("roles")
-
+        print(f"Received role: {roles}Password: {password}Username: {username}")
         register_url="http://localhost:5000/register"
         login_url="http://localhost:5000/login"
         register_data={"username":username, "password":password, "roles":roles}
         register_response= requests.post(register_url, json=register_data).json()
 
 
-        if register_response.status_code==201:
+        register_response = requests.post(register_url, json=register_data).json()
+
+        if "status" in register_response and register_response["status"] == "success":
             dispatcher.utter_message(text="User created")
         else:
             dispatcher.utter_message(text="Registration failed")
+
 
         login_url="http://localhost:5000/login"
         login_data={"username":username, "password":password, "roles":roles}
         login_response= requests.post(login_url, json=login_data).json()
 
-        if login_response.status_code==200:
+        login_response = requests.post(login_url, json=login_data).json()
+
+        if "status" in login_response and login_response["status"] == "success":
             dispatcher.utter_message(text="Login successful")
         else:
             dispatcher.utter_message(text="Login failed")
+
         
         return []

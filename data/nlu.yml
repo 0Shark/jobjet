@@ -34,7 +34,6 @@ nlu:
 - intent: affirm
   examples: |
     - yes
-    - y
     - indeed
     - of course
     - that sounds good
@@ -60,6 +59,30 @@ nlu:
   examples: |
     - [A-Z]{2}[0-9]{4}
 
+- intent: check_error_count
+  examples: |
+    - Check error count
+    - How many login attempts do I have left?
+    - What is my error count?
+
+- intent: ask_user_id
+  examples: |
+    - What is my user id?
+    - Can you say my user id?
+    - I forgot my user id, can you look it up?
+
+- intent: wrong_user_id
+  examples: |
+    - That user id is incorrect
+    - This user id is wrong
+    - That user id is wrong
+
+
+- intent: inform_candidate
+  examples: |
+    - Can you inform the candidate?
+    - Are you able to inform the candidate about the position?
+  
 - lookup: categories
   examples: |
     - engineering

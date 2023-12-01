@@ -7,6 +7,48 @@ intents:
   - user_wants_to_register
   - user_wants_to_login
   - candidate_id
+  - ask_job_category
+  - check_error_count
+  - ask_user_id
+  - wrong_user_id
+  - utter_goodbye
+
+# Expected to be provided by the user
+entities:
+  - username
+  - password
+  - id
+  - role
+
+
+slots:
+  username:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: custom
+
+  password:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: custom
+
+  id:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+
+  role:
+    type: categorical
+    values:
+      - student
+      - recruiter
+      - job poster
+    mappings:
+    - type: custom
+
 
 responses:
   utter_greet:
@@ -20,10 +62,17 @@ responses:
 
   utter_goodbye:
     - text: "Bye"
+  
+  utter_ask_candidate:
+    - text: "Would you like to ask a {user} for the job?"
 
-  utter_iamabot:
-    - text: "I am a bot, powered by Rasa."
-
+  utter_invitation:
+    - text: "The user has been informed"
+    - text: "The candidate [A-Z][A-Z] has been informed"
+  
+  utter_invalid_id:
+    - text: "The following id [A-Z]{2}[0-9]{4} is wrong"
+  
 actions:
   - action_register_login
 
