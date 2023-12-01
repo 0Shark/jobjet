@@ -40,7 +40,7 @@ nlu:
     - that sounds good
     - correct
 
-- intent: action_register_login
+- intent: user_wants_to_register
   examples: |
     - I want to register
     - Sign me up
@@ -48,7 +48,7 @@ nlu:
     - register
     - registration
 
-- intent: action_register_login
+- intent: user_wants_to_login
   examples: |
     - I want to login
     - Sign me in

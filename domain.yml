@@ -4,7 +4,8 @@ intents:
   - greet
   - goodbye
   - affirm
-  - action_register_login
+  - user_wants_to_register
+  - user_wants_to_login
   - candidate_id
 
 responses:

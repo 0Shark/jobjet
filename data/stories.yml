@@ -3,5 +3,5 @@ version: "3.1"
 stories:
 - story: User wants to register
   steps:
-  - intent: user register/login 
+  - intent: user_wants_to_register
   - action: action_register_login
