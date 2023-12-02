@@ -39,12 +39,8 @@ slots:
     - type: from_entity
       entity: id
   role:
-    type: categorical
+    type: text
     influence_conversation: false
-    values:
-    - student
-    - recruiter
-    - job poster
     mappings:
     - type: from_entity
       entity: role

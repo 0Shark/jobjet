@@ -143,6 +143,9 @@ nlu:
     - text: Is it possible to be a [job seeker](role)
     - text: I need to be a [job seeker](role)
     - text: I'm a [student](role)
+    - text: I'm a [recruiter](role)
+    - text: I'm a [job poster](role)
+    - text: I am a [student](role)I
 - intent: utter_goodbye
   examples: |
     - Bye
