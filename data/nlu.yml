@@ -1,7 +1,5 @@
 version: "3.1"
-
 nlu:
-
 - intent: greet
   examples: |
     - hey
@@ -17,7 +15,13 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
-
+    - Hi
+    - Hey
+    - Heya
+    - Hi there
+    - Hello
+    - Helloo
+    - Helloo there
 - intent: goodbye
   examples: |
     - cu
@@ -30,7 +34,7 @@ nlu:
     - see you around
     - bye bye
     - see you later
-
+    - Bye
 - intent: affirm
   examples: |
     - yes
@@ -38,7 +42,46 @@ nlu:
     - of course
     - that sounds good
     - correct
-
+- intent: affirm_register
+  examples: |
+    - yes please register me
+    - yes please register
+    - yes register me
+    - yes register
+    - yes sign me up
+    - yes sign up
+    - yes please sign me up
+    - yes please sign up
+    - yes please sign me up
+    - yes please sign up
+    - yes please sign me up
+    - yes please sign up
+    - yes please sign me up
+    - yes please sign up
+    - yes register me
+    - yes register
+- intent: affirm_login
+  examples: |
+    - yes please login me
+    - yes please login
+    - yes login me
+    - yes login
+    - yes sign me in
+    - yes sign in
+    - yes please sign me in
+    - yes please sign in
+    - yes please sign me in
+    - yes please sign in
+    - yes please sign me in
+    - yes please sign in
+- intent: deny
+  examples: |
+    - no
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
 - intent: user_wants_to_register
   examples: |
     - I want to register
@@ -46,7 +89,6 @@ nlu:
     - Create a new account
     - register
     - registration
-
 - intent: user_wants_to_login
   examples: |
     - I want to login
@@ -54,35 +96,62 @@ nlu:
     - Let me log in
     - login
     - log in
-
-- regex: candidate_id
+- intent: user_gives_username
+  examples:
+    - text: My username is [Juled Zaganjori](username)
+    - text: My username is [Jhon Doe](username)
+    - text: The username is [Elmer Dema](username)
+    - text: Username is [Jhonny Depp](username)
+    - text: My username is [Albert Einstein](username)
+    - text: My username is [jhon_doe](username)
+    - text: My username is [jhonny_depp](username)
+    - text: My username is [albert_einstein](username)
+    - text: My username is [elmer_dema](username)
+    - text: My username is [juled_zaganjori](username)
+    - text: My username is [david_beckham](username)
+    - text: My username is [Wayne Rooney](username)
+    - text: My username is [Cristiano Ronaldo](username)
+    - text: My username is [Lionel Messi](username)
+- intent: user_gives_password
+  examples:
+    - text: My password is [Password123](password)
+    - text: Password is [DontHackMe](password)
+    - text: My pass is [Qwerty123](password)
+    - text: The password is [ThisIsMyPassword](password)
+    - text: This is my password [123FakePassword](password)
+    - text: My password is [password123](password)
+    - text: My password is [dont_hack_me](password)
+    - text: My password is [qwerty123](password)
+    - text: My password is [this_is_my_password](password)
+    - text: My password is [123_fake_password](password)
+    - text: Password is [password_123](password)
+    - text: Password is [dont_hack_me](password)
+    - text: Password is [qwerty_123](password)
+    - text: Password is [this_is_my_password](password)
+    - text: Password is [123_fake_password](password)
+    - text: Password is [password123](password)
+    - text: Password is [DontHackMe](password)
+    - text: Password is [Qwerty123](password)
+- intent: user_gives_role
+  examples:
+    - text: I am a [student](role)
+    - text: I am a [recruiter](role)
+    - text: I am a [job poster](role)
+    - text: Can I be a [student](role)
+    - text: I want to be a [recruiter](role)
+    - text: I want to be a [job poster](role)
+    - text: Is it possible to be a [job seeker](role)
+    - text: I need to be a [job seeker](role)
+    - text: I'm a [student](role)
+- intent: utter_goodbye
   examples: |
-    - [A-Z]{2}[0-9]{4}
-
-- intent: check_error_count
-  examples: |
-    - Check error count
-    - How many login attempts do I have left?
-    - What is my error count?
-
-- intent: ask_user_id
-  examples: |
-    - What is my user id?
-    - Can you say my user id?
-    - I forgot my user id, can you look it up?
-
-- intent: wrong_user_id
-  examples: |
-    - That user id is incorrect
-    - This user id is wrong
-    - That user id is wrong
-
-
-- intent: inform_candidate
-  examples: |
-    - Can you inform the candidate?
-    - Are you able to inform the candidate about the position?
-  
+    - Bye
+    - Goodbye
+    - See you later
+    - Bye bot
+    - Goodbye friend
+    - bye
+    - bye for now
 - lookup: categories
   examples: |
     - engineering

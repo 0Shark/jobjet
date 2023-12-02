@@ -9,15 +9,17 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import requests
 
-class ActionRegisterLogin(Action):
+class ActionRegister(Action):
     def name(self) -> Text:
-        return "action_register_login"
+        return "action_register"
     
     def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         username=tracker.get_slot("username")
         password=tracker.get_slot("password")
-        roles=tracker.get_slot("roles")
-        print(f"Received role: {roles}Password: {password}Username: {username}")
+        roles=tracker.get_slot("role")
+
+        print(f"Received role: {roles} Password: {password} Username: {username}")
+
         register_url="http://localhost:5000/register"
         login_url="http://localhost:5000/login"
         register_data={"username":username, "password":password, "roles":roles}
@@ -31,6 +33,32 @@ class ActionRegisterLogin(Action):
         else:
             dispatcher.utter_message(text="Registration failed")
 
+
+        login_url="http://localhost:5000/login"
+        login_data={"username":username, "password":password, "roles":roles}
+        login_response= requests.post(login_url, json=login_data).json()
+
+        login_response = requests.post(login_url, json=login_data).json()
+
+        if "status" in login_response and login_response["status"] == "success":
+            dispatcher.utter_message(text="Login successful")
+        else:
+            dispatcher.utter_message(text="Login failed")
+
+        
+        return []
+    
+
+class ActionLogin(Action):
+    def name(self) -> Text:
+        return "action_login"
+    
+    def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        username=tracker.get_slot("username")
+        password=tracker.get_slot("password")
+        roles=tracker.get_slot("role")
+
+        print(f"Password: {password} Username: {username} Role: {roles}")
 
         login_url="http://localhost:5000/login"
         login_data={"username":username, "password":password, "roles":roles}
