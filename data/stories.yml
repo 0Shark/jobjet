@@ -4,31 +4,23 @@ stories:
 - story: User wants to register
   steps:
   - intent: greet
-  - action: utter_ask_register_login
-  - intent: user_wants_to_register
+  - action: utter_greet
   - action: utter_ask_username
   - intent: user_gives_username
   - action: utter_ask_password
   - intent: user_gives_password
-  - action: utter_ask_role
-  - intent: user_gives_role
-  - action: utter_confirm_register
-  - intent: affirm_register
+  - action: utter_ask_register_login
+  - intent: user_wants_to_register
   - action: action_register
-  - intent: goodbye
 
 - story: User wants to login
   steps:
   - intent: greet
-  - action: utter_ask_register_login
-  - intent: user_wants_to_login
+  - action: utter_greet
   - action: utter_ask_username
   - intent: user_gives_username
   - action: utter_ask_password
   - intent: user_gives_password
-  - action: utter_ask_role
-  - intent: user_gives_role
-  - action: utter_confirm_login
-  - intent: affirm
+  - action: utter_ask_register_login
+  - intent: user_wants_to_login
   - action: action_login
-  - intent: goodbye

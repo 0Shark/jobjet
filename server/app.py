@@ -6,15 +6,9 @@ import requests
 from bs4 import BeautifulSoup
 import os
 
-"""
-curl to create someone (change student name)
-curl -X POST -H "Content-Type: application/json" -d "{\"username\": \"john_doe\", \"password\": \"password123\", \"role\": \"student\"}" http://localhost:5000/register
-"""
-
-
 app = Flask(__name__)
 app.config["key"] = "t_h_d"
-USERS_FILE = os.getcwd() + "/speech-assistant/server/users.json"
+USERS_FILE = os.getcwd() + "/users.json"
 
 #e ndryshova pak kyt se krijote file ne vedi.
 LISTINGS_FILE = os.getcwd() + "/listings.json"
@@ -75,35 +69,30 @@ def register():
 
     username = data.get("username")
     password = data.get("password")
-    roles = data.get("role")
 
-    print(f"Received role: {roles}")  # Add this line for debugging
-
-    if roles not in ["student", "job poster", "recruiter", "admin"]:
-        return {"status": "error", "message": "Invalid role, please choose between student, job poster, or recruiter, or admin"}
-
+    print(f"Received password: {password} Username: {username}")
 
     if username in users:
         return {"status": "error", "message": "Username already exists"}
 
-    user_id = str(uuid.uuid4())  # Generate a random UUID for the user
-    users[user_id] = {"name": username, "password": password, "roles": roles}
+    users[username] = {
+        "id": str(uuid.uuid4()),
+        "password": password
+    }
     save_users(users)
 
-    return {"status": "success", "message": "User created", "user_id": user_id, "roles": roles}
-
+    return {"status": "success", "message": "User created", "user_id": users[username]["id"]}
+            
 @app.route("/login", methods=["POST"])
 def login():
     data = request.get_json()
 
     username = data.get("username")
     password = data.get("password")
-    user_id = data.get("user_id")
-    roles=data.get("roles")
 
     if username in users:
-        if users[user_id]["password"] == password:
-            return {"status": "success", "message": "Login successful", "user_id": users[user_id]["id"], "roles": users[user_id]["roles"]}
+        if users[username]["password"] == password:
+            return {"status": "success", "message": "Login successful"}
         else:
             return {"status": "error", "message": "Incorrect password"}
     else:

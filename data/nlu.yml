@@ -42,38 +42,6 @@ nlu:
     - of course
     - that sounds good
     - correct
-- intent: affirm_register
-  examples: |
-    - yes please register me
-    - yes please register
-    - yes register me
-    - yes register
-    - yes sign me up
-    - yes sign up
-    - yes please sign me up
-    - yes please sign up
-    - yes please sign me up
-    - yes please sign up
-    - yes please sign me up
-    - yes please sign up
-    - yes please sign me up
-    - yes please sign up
-    - yes register me
-    - yes register
-- intent: affirm_login
-  examples: |
-    - yes please login me
-    - yes please login
-    - yes login me
-    - yes login
-    - yes sign me in
-    - yes sign in
-    - yes please sign me in
-    - yes please sign in
-    - yes please sign me in
-    - yes please sign in
-    - yes please sign me in
-    - yes please sign in
 - intent: deny
   examples: |
     - no
@@ -134,18 +102,18 @@ nlu:
     - text: Password is [Qwerty123](password)
 - intent: user_gives_role
   examples:
-    - text: I am a [student](role)
-    - text: I am a [recruiter](role)
-    - text: I am a [job poster](role)
-    - text: Can I be a [student](role)
-    - text: I want to be a [recruiter](role)
-    - text: I want to be a [job poster](role)
-    - text: Is it possible to be a [job seeker](role)
-    - text: I need to be a [job seeker](role)
-    - text: I'm a [student](role)
-    - text: I'm a [recruiter](role)
-    - text: I'm a [job poster](role)
-    - text: I am a [student](role)I
+    - text: Currently am a [student]{"entity":"role","value":"student"}
+    - text: i want to be a [job recruiter]{"entity":"role","value":"recruiter"}
+    - text: I am a [job poster]{"entity":"role","value":"job_poster"}
+    - text: Can I be a [student]{"entity":"role","value":"student"}
+    - text: I want to be a [recruiter]{"entity":"role","value":"recruiter"}
+    - text: I want to be a [job poster]{"entity":"role","value":"job_poster"}
+    - text: Is it possible to be a [job seeker]{"entity":"role","value":"student"}
+    - text: I'm currently still [studying]{"entity":"role","value":"student"}
+    - text: I am a part time [student]{"entity":"role","value":"student"}
+    - text: I work as a [recruiter](role){"entity":"role","value":"recruiter"}
+    - text: I want to [post jobs]{"entity":"role","value":"job_poster"}
+    - text: I am a [student]{"entity":"role","value":"student"}
 - intent: utter_goodbye
   examples: |
     - Bye

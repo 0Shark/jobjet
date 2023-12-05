@@ -16,34 +16,27 @@ class ActionRegister(Action):
     def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         username=tracker.get_slot("username")
         password=tracker.get_slot("password")
-        roles=tracker.get_slot("role")
 
-        print(f"Received role: {roles} Password: {password} Username: {username}")
+        print(f"Received password: {password} Username: {username}")
 
         register_url="http://localhost:5000/register"
-        login_url="http://localhost:5000/login"
-        register_data={"username":username, "password":password, "roles":roles}
-        register_response= requests.post(register_url, json=register_data).json()
-
-
+        register_data={"username":username, "password":password}
         register_response = requests.post(register_url, json=register_data).json()
 
         if "status" in register_response and register_response["status"] == "success":
-            dispatcher.utter_message(text="User created")
+            dispatcher.utter_message(text="User created! Your id is: " + register_response["user_id"])
         else:
             dispatcher.utter_message(text="Registration failed")
 
 
         login_url="http://localhost:5000/login"
-        login_data={"username":username, "password":password, "roles":roles}
-        login_response= requests.post(login_url, json=login_data).json()
-
+        login_data={"username":username, "password":password}
         login_response = requests.post(login_url, json=login_data).json()
 
         if "status" in login_response and login_response["status"] == "success":
-            dispatcher.utter_message(text="Login successful")
+            dispatcher.utter_message(text="Login successful! Welcome to the job portal.")
         else:
-            dispatcher.utter_message(text="Login failed")
+            dispatcher.utter_message(text="Login failed! Please try again.")
 
         
         return []
@@ -56,20 +49,17 @@ class ActionLogin(Action):
     def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         username=tracker.get_slot("username")
         password=tracker.get_slot("password")
-        roles=tracker.get_slot("role")
 
-        print(f"Password: {password} Username: {username} Role: {roles}")
+        print(f"Password: {password} Username: {username}")
 
         login_url="http://localhost:5000/login"
-        login_data={"username":username, "password":password, "roles":roles}
-        login_response= requests.post(login_url, json=login_data).json()
-
+        login_data={"username":username, "password":password}
         login_response = requests.post(login_url, json=login_data).json()
 
         if "status" in login_response and login_response["status"] == "success":
-            dispatcher.utter_message(text="Login successful")
+            dispatcher.utter_message(text="Login successful! Welcome to the job portal.")
         else:
-            dispatcher.utter_message(text="Login failed")
+            dispatcher.utter_message(text="Login failed! Please try again.")
 
         
         return []

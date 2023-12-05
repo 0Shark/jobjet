@@ -2,14 +2,10 @@ version: "3.1"
 
 rules:
 
-- rule: Say hello anytime the user says hello and ask if they want to register or login
+- rule: Greet the user
   steps:
   - intent: greet
-  - action: utter_ask_register_login
-
-- rule: If the user wants to register, ask for username
-  steps:
-  - intent: user_wants_to_register
+  - action: utter_greet
   - action: utter_ask_username
 
 - rule: If the user gives username, ask for password
@@ -17,17 +13,17 @@ rules:
   - intent: user_gives_username
   - action: utter_ask_password
 
-- rule: If the user gives password, ask for role
+- rule: When password given sk if they want to register or login
   steps:
   - intent: user_gives_password
-  - action: utter_ask_role
+  - action: utter_ask_register_login
 
-- rule: If the confirms registration, register the user
+- rule: If user wants to register, perform registration
   steps:
-  - intent: affirm_register
+  - intent: user_wants_to_register
   - action: action_register
 
-- rule: If the user confirms login, login the user
+- rule: If user wants to login, perform login
   steps:
-  - intent: affirm_login
+  - intent: user_wants_to_login
   - action: action_login

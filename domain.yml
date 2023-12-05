@@ -1,8 +1,6 @@
 version: '3.1'
 intents:
 - affirm
-- affirm_register
-- affirm_login
 - deny
 - ask_user_id
 - goodbye
@@ -61,10 +59,6 @@ responses:
   - text: What is your password?
   utter_ask_role:
   - text: What is your role (student, recruiter, job poster)?
-  utter_confirm_register:
-  - text: Should I register you as {role} with username {username} and password {password}? (yes/no)
-  utter_confirm_login:
-  - text: Should I login you as {role} with username {username} and password {password}? (yes/no)
   utter_invitation:
   - text: The user has been informed
   - text: The candidate [A-Z][A-Z] has been informed
@@ -72,7 +66,6 @@ responses:
   - text: The following id [A-Z]{2}[0-9]{4} is wrong
 actions:
 - action_register
-- utter_ask_role
 - utter_ask_password
 - utter_ask_register_login
 - utter_goodbye
