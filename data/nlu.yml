@@ -114,6 +114,13 @@ nlu:
     - text: I work as a [recruiter](role){"entity":"role","value":"recruiter"}
     - text: I want to [post jobs]{"entity":"role","value":"job_poster"}
     - text: I am a [student]{"entity":"role","value":"student"}
+
+# nlu recruiter
+- intent: find_candidate
+  examples:
+    - text: I want to find {"entity":"id"}
+    - text: I am looking for [A-Z][A-Z]
+
 - intent: utter_goodbye
   examples: |
     - Bye
@@ -125,14 +132,27 @@ nlu:
     - bye for now
 - lookup: categories
   examples: |
-    - engineering
-    - marketing
-    - sales
-    - customer service
-    - accounting
-    - administrative
-    - manufacturing
-    - healthcare
-    - education
-    - construction
-    - retail
+    - Software Engineer
+    - Machine learning engineer
+    - Data scientist
+    - Data engineer
+    - Data analyst
+    - Software developer
+    - Web developer
+    - Working Student Software Engineer
+    - Internship Software Engineer
+    - Internship Machine learning engineer
+    - Working student AI engineer
+    - Generative AI Developer
+    - Full Stack Developer
+    - Frontend Developer
+    - Backend Developer
+    - DevOps Engineer
+    - Cloud Engineer
+    - Senior AI Engineer
+    - Senior Software Engineer
+    - Senior Machine learning engineer
+    - Senior Image Scientist
+    - Computer Vision Engineer
+    - Computer Vision Scientist
+

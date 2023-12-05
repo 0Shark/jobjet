@@ -12,6 +12,9 @@ stories:
   - action: utter_ask_register_login
   - intent: user_wants_to_register
   - action: action_register
+  - action: utter_ask_role
+  - intent: user_gives_role
+  - checkpoint: user_gives_role
 
 - story: User wants to login
   steps:
@@ -24,3 +27,30 @@ stories:
   - action: utter_ask_register_login
   - intent: user_wants_to_login
   - action: action_login
+  - action: utter_ask_role
+  - intent: user_gives_role 
+  - checkpoint: user_gives_role
+
+- story: User chooses student
+  steps:
+  - checkpoint: user_gives_role
+  - intent: categories
+  - action: utter_valid_role
+  - action: utter_invalid_role
+  - checkpoint: categories
+  ##### implement not done, retrieve listing etc
+
+- story: User chooses recruiter
+  steps:
+  - checkpoint: user_gives_role
+  - action: utter_ask_for_candidate 
+  - intent: find_candidate
+  ##implement not done
+
+- story: User chooses job poster
+  steps:
+  - checkpoint: user_gives_role
+  - action: utter_ask_for_update
+  
+
+

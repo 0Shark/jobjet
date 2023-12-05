@@ -13,7 +13,7 @@ rules:
   - intent: user_gives_username
   - action: utter_ask_password
 
-- rule: When password given sk if they want to register or login
+- rule: When password given ask if they want to register or login
   steps:
   - intent: user_gives_password
   - action: utter_ask_register_login

@@ -12,6 +12,9 @@ intents:
 - user_wants_to_register
 - utter_goodbye
 - wrong_user_id
+- categories
+- find_candidate
+
 entities:
 - password
 - role
@@ -63,7 +66,33 @@ responses:
   - text: The user has been informed
   - text: The candidate [A-Z][A-Z] has been informed
   utter_invalid_id:
+
+  ## student domain start
   - text: The following id [A-Z]{2}[0-9]{4} is wrong
+  utter_invalid_role:
+  - text: The following role [A-Z][A-Z] is wrong
+  utter_valid_role:
+  - text: The following role [A-Z][A-Z] is valid
+  ## student domain end
+
+  ## recruiter domain start
+  utter_ask_for_candidate:
+  - text: Which candidate would you like to invite? (Please enter the candidate id)
+
+  utter_find_candidate:
+  - text: I would like to invite the following candidate [A-Z][A-Z]
+
+  utter_invalid_candidate:
+  - text: The following candidate [A-Z][A-Z] is invalid
+  utter_valid_candidate:
+  - text: The following candidate [A-Z][A-Z] is valid
+  ## recruiter domain end
+
+  ## job poster domain start
+  utter_ask_for_update:
+  - text: Which job would you like to update? (Please enter the job id)
+  
+
 actions:
 - action_register
 - utter_ask_password
