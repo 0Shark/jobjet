@@ -26,7 +26,7 @@ class ActionRegister(Action):
         if "status" in register_response and register_response["status"] == "success":
             dispatcher.utter_message(text="User created! Your id is: " + register_response["user_id"])
         else:
-            dispatcher.utter_message(text="Registration failed")
+            dispatcher.utter_message(text="Registration failed" + register_response["message"])
 
 
         login_url="http://localhost:5000/login"
@@ -36,7 +36,7 @@ class ActionRegister(Action):
         if "status" in login_response and login_response["status"] == "success":
             dispatcher.utter_message(text="Login successful! Welcome to the job portal.")
         else:
-            dispatcher.utter_message(text="Login failed! Please try again.")
+            dispatcher.utter_message(text="Login failed! Please try again." + login_response["message"])
 
         
         return []

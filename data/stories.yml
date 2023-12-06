@@ -13,8 +13,7 @@ stories:
   - intent: user_wants_to_register
   - action: action_register
   - action: utter_ask_role
-  - intent: user_gives_role
-  - checkpoint: user_gives_role
+  - checkpoint: ask_user_role
 
 - story: User wants to login
   steps:
@@ -28,29 +27,96 @@ stories:
   - intent: user_wants_to_login
   - action: action_login
   - action: utter_ask_role
-  - intent: user_gives_role 
-  - checkpoint: user_gives_role
+  - checkpoint: ask_user_role
 
-- story: User chooses student
+- story: User chooses student role and wants to view available jobs
   steps:
-  - checkpoint: user_gives_role
-  - intent: categories
-  - action: utter_valid_role
-  - action: utter_invalid_role
-  - checkpoint: categories
-  ##### implement not done, retrieve listing etc
-
+  - checkpoint: ask_user_role
+  - intent: user_is_student
+  - action: utter_confirm_student
 - story: User chooses recruiter
   steps:
-  - checkpoint: user_gives_role
-  - action: utter_ask_for_candidate 
-  - intent: find_candidate
-  ##implement not done
+  - checkpoint: ask_user_role
+  - intent: user_is_recruiter
+  - action: utter_confirm_recruiter
 
 - story: User chooses job poster
   steps:
-  - checkpoint: user_gives_role
-  - action: utter_ask_for_update
+  - checkpoint: ask_user_role
+  - intent: user_is_job_poster
+  - action: utter_confirm_job_poster
   
 
 
+
+# Interactive stories
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_username
+  - intent: user_gives_username
+    entities:
+    - username: juled
+  - slot_was_set:
+    - username: juled
+  - action: utter_ask_password
+  - intent: user_gives_password
+    entities:
+    - password: test123
+  - slot_was_set:
+    - password: test123
+  - action: utter_ask_register_login
+  - intent: user_wants_to_register
+  - action: action_register
+  - action: utter_ask_role
+  - intent: user_is_student
+  - slot_was_set:
+    - role: student
+  - action: utter_confirm_student
+
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_username
+  - intent: user_gives_username
+    entities:
+    - username: elmer
+  - slot_was_set:
+    - username: elmer
+  - action: utter_ask_password
+  - intent: user_gives_password
+  - intent: user_gives_password
+    entities:
+    - password: robot111
+  - action: utter_ask_register_login
+  - intent: user_wants_to_register
+  - action: action_register
+  - action: utter_ask_role
+  - intent: user_is_student
+  - slot_was_set:
+    - role: student
+  - action: utter_confirm_student
+
+- story: interactive_story_3
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_username
+  - intent: user_gives_username
+    entities:
+    - username: jack
+  - slot_was_set:
+    - username: jack
+  - action: utter_ask_password
+  - intent: user_gives_password
+    entities:
+    - password: python2003
+  - action: utter_ask_register_login
+  - intent: user_wants_to_login
+  - action: action_login
+  - action: utter_ask_role
+  - intent: user_is_recruiter
+  - slot_was_set:
+    - role: recruiter

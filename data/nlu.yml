@@ -65,62 +65,80 @@ nlu:
     - login
     - log in
 - intent: user_gives_username
-  examples:
-    - text: My username is [Juled Zaganjori](username)
-    - text: My username is [Jhon Doe](username)
-    - text: The username is [Elmer Dema](username)
-    - text: Username is [Jhonny Depp](username)
-    - text: My username is [Albert Einstein](username)
-    - text: My username is [jhon_doe](username)
-    - text: My username is [jhonny_depp](username)
-    - text: My username is [albert_einstein](username)
-    - text: My username is [elmer_dema](username)
-    - text: My username is [juled_zaganjori](username)
-    - text: My username is [david_beckham](username)
-    - text: My username is [Wayne Rooney](username)
-    - text: My username is [Cristiano Ronaldo](username)
-    - text: My username is [Lionel Messi](username)
+  examples: |
+    - My username is [Juled Zaganjori](username)
+    - My username is [Jhon Doe](username)
+    - The username is [Elmer Dema](username)
+    - Username is [Jhonny Depp](username)
+    - My username is [Albert Einstein](username)
+    - My username is [jhon_doe](username)
+    - My username is [jhonny_depp](username)
+    - My username is [albert_einstein](username)
+    - My username is [elmer_dema](username)
+    - My username is [juled_zaganjori](username)
+    - My username is [david_beckham](username)
+    - My username is [Wayne Rooney](username)
+    - My username is [Cristiano Ronaldo](username)
+    - My username is [Lionel Messi](username)
+    - My username is [juled](username)
+    - My username is [elmer](username)
 - intent: user_gives_password
-  examples:
-    - text: My password is [Password123](password)
-    - text: Password is [DontHackMe](password)
-    - text: My pass is [Qwerty123](password)
-    - text: The password is [ThisIsMyPassword](password)
-    - text: This is my password [123FakePassword](password)
-    - text: My password is [password123](password)
-    - text: My password is [dont_hack_me](password)
-    - text: My password is [qwerty123](password)
-    - text: My password is [this_is_my_password](password)
-    - text: My password is [123_fake_password](password)
-    - text: Password is [password_123](password)
-    - text: Password is [dont_hack_me](password)
-    - text: Password is [qwerty_123](password)
-    - text: Password is [this_is_my_password](password)
-    - text: Password is [123_fake_password](password)
-    - text: Password is [password123](password)
-    - text: Password is [DontHackMe](password)
-    - text: Password is [Qwerty123](password)
-- intent: user_gives_role
-  examples:
-    - text: Currently am a [student]{"entity":"role","value":"student"}
-    - text: i want to be a [job recruiter]{"entity":"role","value":"recruiter"}
-    - text: I am a [job poster]{"entity":"role","value":"job_poster"}
-    - text: Can I be a [student]{"entity":"role","value":"student"}
-    - text: I want to be a [recruiter]{"entity":"role","value":"recruiter"}
-    - text: I want to be a [job poster]{"entity":"role","value":"job_poster"}
-    - text: Is it possible to be a [job seeker]{"entity":"role","value":"student"}
-    - text: I'm currently still [studying]{"entity":"role","value":"student"}
-    - text: I am a part time [student]{"entity":"role","value":"student"}
-    - text: I work as a [recruiter](role){"entity":"role","value":"recruiter"}
-    - text: I want to [post jobs]{"entity":"role","value":"job_poster"}
-    - text: I am a [student]{"entity":"role","value":"student"}
-
-# nlu recruiter
+  examples: |
+    - My password is [Password123](password)
+    - Password is [DontHackMe](password)
+    - My pass is [Qwerty123](password)
+    - The password is [ThisIsMyPassword](password)
+    - This is my password [123FakePassword](password)
+    - My password is [password123](password)
+    - My password is [dont_hack_me](password)
+    - My password is [qwerty123](password)
+    - My password is [this_is_my_password](password)
+    - My password is [123_fake_password](password)
+    - Password is [password_123](password)
+    - Password is [dont_hack_me](password)
+    - Password is [qwerty_123](password)
+    - Password is [this_is_my_password](password)
+    - Password is [123_fake_password](password)
+    - Password is [password123](password)
+    - Password is [Qwerty123](password)
+    - My password is [test123](password)
+    - Password is [python2021](password)
+    - Password is [cranberry](password)
+    - My password is [python2004](password)
+    - My password is [python2003](type)
+    - My password is [python2003](password)
+- intent: user_is_student
+  examples: |
+    - Currently I am a student
+    - I am a student
+    - I am currently a student
+    - I am a student at the moment
+    - Student at the moment
+    - I am a student right now
+    - Right now I am a student
+    - I'm a student right now
+- intent: user_is_job_poster
+  examples: |
+    - I am a job poster
+    - I am currently a job poster
+    - I work as a job poster
+    - I want to post a job
+    - I want to post a job offer
+    - I have a job offer
+- intent: user_is_recruiter
+  examples: |
+    - I am a recruiter
+    - I am currently a recruiter
+    - I work as a recruiter
+    - I want to recruit
+    - I want to recruit a candidate
+    - I want to recruit a new employee
+    - I am looking for a new employee
+    - I am a job recruiter
 - intent: find_candidate
-  examples:
-    - text: I want to find {"entity":"id"}
-    - text: I am looking for [A-Z][A-Z]
-
+  examples: |
+    - I want to find {"entity":"id"}
+    - I am looking for A-Z
 - intent: utter_goodbye
   examples: |
     - Bye
@@ -155,4 +173,3 @@ nlu:
     - Senior Image Scientist
     - Computer Vision Engineer
     - Computer Vision Scientist
-

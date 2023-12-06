@@ -17,13 +17,3 @@ rules:
   steps:
   - intent: user_gives_password
   - action: utter_ask_register_login
-
-- rule: If user wants to register, perform registration
-  steps:
-  - intent: user_wants_to_register
-  - action: action_register
-
-- rule: If user wants to login, perform login
-  steps:
-  - intent: user_wants_to_login
-  - action: action_login

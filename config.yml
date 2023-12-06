@@ -22,11 +22,6 @@ pipeline:
 - name: FallbackClassifier
   threshold: 0.3
   ambiguity_threshold: 0.1
-- name: DucklingEntityExtractor
-  url: http://localhost:8000
-  dimension:
-  - email
-  - number
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/
 policies:
@@ -34,8 +29,9 @@ policies:
 # If you'd like to customize them, uncomment and adjust the policies.
 # See https://rasa.com/docs/rasa/policies for more information.
 - name: MemoizationPolicy
+  max_history: 2
 - name: TEDPolicy
-  max_history: 5
+  max_history: 2
   epochs: 100
 - name: RulePolicy
 assistant_id: 20231202-184141-plumb-seasoning

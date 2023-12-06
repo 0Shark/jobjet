@@ -1,24 +1,26 @@
 version: '3.1'
 intents:
 - affirm
-- deny
 - ask_user_id
+- deny
+- find_candidate
 - goodbye
 - greet
 - user_gives_password
 - user_gives_role
 - user_gives_username
+- user_is_job_poster
+- user_is_recruiter
+- user_is_student
 - user_wants_to_login
 - user_wants_to_register
 - utter_goodbye
 - wrong_user_id
-- categories
-- find_candidate
-
 entities:
+- type
 - password
-- role
 - username
+- role
 - id
 slots:
   username:
@@ -41,10 +43,17 @@ slots:
       entity: id
   role:
     type: text
-    influence_conversation: false
+    influence_conversation: true
     mappings:
-    - type: from_entity
-      entity: role
+    - type: from_intent
+      intent: user_is_student
+      value: student
+    - type: from_intent
+      intent: user_is_recruiter
+      value: recruiter
+    - type: from_intent
+      intent: user_is_job_poster
+      value: job_poster
 responses:
   utter_greet:
   - text: Hey! Welcome to the job portal!
@@ -65,41 +74,41 @@ responses:
   utter_invitation:
   - text: The user has been informed
   - text: The candidate [A-Z][A-Z] has been informed
+  utter_confirm_student:
+  - text: Alright, {username}! I'll refer to you as a student from now on.
+  - text: Awesome, {username}! You are now a student.
+  utter_confirm_recruiter:
+  - text: Alright, {username}! I'll refer to you as a recruiter from now on.
+  - text: Awesome, {username}! You are now a recruiter.
+  utter_confirm_job_poster:
+  - text: Alright, {username}! I'll refer to you as a job poster from now on.
+  - text: Awesome, {username}! You are now a job poster.
   utter_invalid_id:
-
-  ## student domain start
   - text: The following id [A-Z]{2}[0-9]{4} is wrong
   utter_invalid_role:
   - text: The following role [A-Z][A-Z] is wrong
   utter_valid_role:
   - text: The following role [A-Z][A-Z] is valid
-  ## student domain end
-
-  ## recruiter domain start
   utter_ask_for_candidate:
   - text: Which candidate would you like to invite? (Please enter the candidate id)
-
   utter_find_candidate:
   - text: I would like to invite the following candidate [A-Z][A-Z]
-
   utter_invalid_candidate:
   - text: The following candidate [A-Z][A-Z] is invalid
   utter_valid_candidate:
   - text: The following candidate [A-Z][A-Z] is valid
-  ## recruiter domain end
-
-  ## job poster domain start
   utter_ask_for_update:
   - text: Which job would you like to update? (Please enter the job id)
-  
-
 actions:
 - action_register
-- utter_ask_password
 - utter_ask_register_login
-- utter_goodbye
+- utter_greet
+- utter_confirm_student
 - utter_ask_username
+- utter_ask_password
+- utter_ask_role
 - action_login
+- utter_goodbye
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
