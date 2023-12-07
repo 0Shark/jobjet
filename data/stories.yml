@@ -1,6 +1,8 @@
 version: "3.1"
 
 stories:
+
+# Login and registration stories
 - story: User wants to register
   steps:
   - intent: greet
@@ -29,17 +31,23 @@ stories:
   - action: utter_ask_role
   - checkpoint: ask_user_role
 
+# User role stories
+
+# User is student
 - story: User chooses student role and wants to view available jobs
   steps:
   - checkpoint: ask_user_role
   - intent: user_is_student
   - action: utter_confirm_student
+
+# User is recruiter
 - story: User chooses recruiter
   steps:
   - checkpoint: ask_user_role
   - intent: user_is_recruiter
   - action: utter_confirm_recruiter
 
+# User is job poster
 - story: User chooses job poster
   steps:
   - checkpoint: ask_user_role
@@ -49,7 +57,7 @@ stories:
 
 
 
-# Interactive stories
+# Interactive stories to improve accuracy
 - story: interactive_story_1
   steps:
   - intent: greet

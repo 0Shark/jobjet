@@ -75,14 +75,14 @@ responses:
   - text: The user has been informed
   - text: The candidate [A-Z][A-Z] has been informed
   utter_confirm_student:
-  - text: Alright, {username}! I'll refer to you as a student from now on.
-  - text: Awesome, {username}! You are now a student.
+  - text: Alright, {username}! I'll refer to you as a student from now on. You can ask me to show you available jobs or ask me to apply for a job.
+  - text: Awesome, {username}! You are now a student. I can show you available jobs or apply for a job for you.
   utter_confirm_recruiter:
-  - text: Alright, {username}! I'll refer to you as a recruiter from now on.
-  - text: Awesome, {username}! You are now a recruiter.
+  - text: Alright, {username}! I'll refer to you as a recruiter from now on. You can ask me to show you available candidates for a job type or ask me to invite a specific candidate for a job.
+  - text: Awesome, {username}! You are now a recruiter. I can show you available candidates for a job type or invite a specific candidate for a job.
   utter_confirm_job_poster:
-  - text: Alright, {username}! I'll refer to you as a job poster from now on.
-  - text: Awesome, {username}! You are now a job poster.
+  - text: Alright, {username}! I'll refer to you as a job poster from now on. You can ask me to add new jobs from LinkedIn or ask me to update an existing job.
+  - text: Awesome, {username}! You are now a job poster. I can add new jobs from LinkedIn or update an existing job for you.
   utter_invalid_id:
   - text: The following id [A-Z]{2}[0-9]{4} is wrong
   utter_invalid_role:
