@@ -172,6 +172,11 @@ nlu:
     - I want to apply for [Data Scientist](job_category)
     - I am applying for [Data Engineer](job_category)
     - I woud like to apply for [AI Engineer](job_category)
+    - I want to apply for [Data Analyst](job_category)
+    - I want to apply for [Software Developer](job_category)
+    - I want to apply for [Web Developer](job_category)
+    - I want to apply for [Working Student Software Engineer](job_category)
+    - I want to apply for [Internship Software Engineer](job_category)
 - lookup: job_category
   examples: |
     - Software Engineer
