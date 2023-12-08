@@ -82,6 +82,11 @@ nlu:
     - My username is [Lionel Messi](username)
     - My username is [juled](username)
     - My username is [elmer](username)
+    - My username is [jz19337](username)
+    - My username is [ed01551](username)
+    - My username is [ugarmann](username)
+    - My username is [jack15](username)
+    - My username is [jz19337](username)
 - intent: user_gives_password
   examples: |
     - My password is [Password123](password)
@@ -107,6 +112,7 @@ nlu:
     - My password is [python2004](password)
     - My password is [python2003](type)
     - My password is [python2003](password)
+    - My password is [zebra123](password)
 - intent: user_is_student
   examples: |
     - Currently I am a student
@@ -148,28 +154,323 @@ nlu:
     - Goodbye friend
     - bye
     - bye for now
-- lookup: categories
+- intent: user_asks_for_jobs
+  examples: |
+    - I want to view available jobs for [Software Engineer](job_category)
+    - Can I see jobs for [Machine Learning Engineer](job_category)
+    - Show available jobs for [Data Scientist](job_category)
+    - What jobs are available for [Data Engineer](job_category)
+    - Are there any jobs for [AI Engineer](job_category)
+    - Show me jobs for [Data Analyst](job_category)
+    - Could you show me jobs for [Software Developer](job_category)
+    - I want to see jobs for [Web Developer](job_category)
+    - I want to view jobs for [Machine Learning Engineer](job_category)
+- lookup: job_category
   examples: |
     - Software Engineer
-    - Machine learning engineer
-    - Data scientist
-    - Data engineer
-    - Data analyst
-    - Software developer
-    - Web developer
+    - Machine Learning Engineer
+    - Data Scientist
+    - Data Engineer
+    - AI Engineer
+    - Data Analyst
+    - Software Developer
+    - Web Developer
     - Working Student Software Engineer
     - Internship Software Engineer
-    - Internship Machine learning engineer
-    - Working student AI engineer
-    - Generative AI Developer
+    - Front-end Developer
+    - Back-end Developer
     - Full Stack Developer
-    - Frontend Developer
-    - Backend Developer
+    - Mobile App Developer
+    - Embedded Software Engineer
     - DevOps Engineer
     - Cloud Engineer
-    - Senior AI Engineer
-    - Senior Software Engineer
-    - Senior Machine learning engineer
-    - Senior Image Scientist
+    - Systems Engineer
+    - Quality Assurance Engineer
+    - Automation Engineer
+    - Test Engineer
+    - Security Engineer
+    - Network Engineer
+    - UI/UX Designer
+    - Technical Writer
+    - Technical Support Engineer
+    - IT Consultant
+    - Database Administrator
+    - Systems Administrator
+    - Network Administrator
+    - Computer Systems Analyst
+    - Business Intelligence Analyst
+    - Computer and Information Research Scientist
+    - Game Developer
+    - Augmented Reality (AR) Developer
+    - Virtual Reality (VR) Developer
+    - Blockchain Developer
+    - Cryptographer
+    - Cryptocurrency Analyst
+    - Cybersecurity Analyst
     - Computer Vision Engineer
-    - Computer Vision Scientist
+    - Natural Language Processing (NLP) Engineer
+    - Robotics Engineer
+    - Control Systems Engineer
+    - Simulation Engineer
+    - Audio Engineer
+    - Graphics Programmer
+    - UI/UX Researcher
+    - Cloud Solutions Architect
+    - Business Systems Analyst
+    - Information Security Analyst
+    - Incident Responder
+    - Malware Analyst
+    - Forensic Analyst
+    - IT Auditor
+    - IT Project Manager
+    - Technical Project Manager
+    - Mobile Game Developer
+    - AR/VR Content Developer
+    - IT Trainer
+    - Data Architect
+    - Integration Engineer
+    - Compiler Engineer
+    - Embedded Systems Developer
+    - Quantum Computing Researcher
+    - FPGA Engineer
+    - Computational Linguist
+    - HPC (High-Performance Computing) Engineer
+    - Technical Evangelist
+    - Systems Integrator
+    - Chatbot Developer
+    - Accessibility Engineer
+    - Ethical Hacker
+    - Open Source Developer
+    - Platform Engineer
+    - API Developer
+    - Middleware Developer
+    - ERP Consultant
+    - E-commerce Developer
+    - Digital Marketing Technologist
+    - Health Informatics Specialist
+    - Bioinformatics Analyst
+    - Computational Biologist
+    - Geospatial Analyst
+    - GIS (Geographic Information Systems) Developer
+    - Enterprise Architect
+    - SAP Consultant
+    - Salesforce Developer
+    - Business Process Analyst
+    - Regulatory Compliance Analyst
+    - Cybersecurity Consultant
+    - Quantum Machine Learning Engineer
+    - Cloud Security Engineer
+    - Robotic Process Automation (RPA) Developer
+    - A/B Testing Analyst
+    - Incident Commander
+    - IT Service Desk Analyst
+    - Cryptocurrency Developer
+    - Smart Contract Developer
+    - Computational Chemist
+    - CAD (Computer-Aided Design) Engineer
+    - Systems Modeler
+    - Microservices Architect
+    - Continuous Integration/Continuous Deployment (CI/CD) Engineer
+    - Data Warehouse Architect
+    - Information Governance Analyst
+    - Game AI Programmer
+    - Human-Robot Interaction Engineer
+    - Systems Software Developer
+    - Biometric Systems Engineer
+    - IT Business Analyst
+    - Virtual Assistant Developer
+    - Edge Computing Engineer
+    - IT Risk Analyst
+    - Data Migration Specialist
+    - NoSQL Database Administrator
+    - Serverless Computing Engineer
+    - Quantum Information Scientist
+    - Computational Physicist
+    - Firmware Engineer
+    - IT Compliance Analyst
+    - IT Procurement Specialist
+    - Mobile UI Designer
+    - Edge AI Developer
+    - Quantum Hardware Engineer
+    - Computational Geologist
+    - Cloud Data Engineer
+    - Holographic Developer
+    - Edge Security Engineer
+    - IT Operations Analyst
+    - ITIL Process Manager
+    - ChatOps Engineer
+    - Conversational AI Developer
+    - Human-Centered Design Engineer
+    - Quantum Software Engineer
+    - Quantum Algorithms Researcher
+    - IT Change Manager
+    - Quantum Cryptography Engineer
+    - Cloud Solutions Engineer
+    - AI Ethics Specialist
+    - IT Sustainability Analyst
+    - Remote Sensing Data Analyst
+    - Blockchain Security Engineer
+    - Digital Twin Engineer
+    - Video Game AI Developer
+    - XR (Extended Reality) Developer
+    - IT Disaster Recovery Specialist
+    - IT Business Continuity Planner
+    - Voice User Interface (VUI) Designer
+    - IT Compliance Manager
+    - GPU Programmer
+    - Edge Analytics Engineer
+    - Quantum Networking Engineer
+    - Bioinformatics Developer
+    - Algorithmic Trading Developer
+    - Cloud Cost Analyst
+    - Conversational UX Designer
+    - IT Vendor Management Analyst
+    - AR/VR UX Designer
+    - IT Infrastructure Architect
+    - IT Procurement Manager
+    - Edge Computing Security Engineer
+    - Quantum Materials Scientist
+    - Quantum Optics Engineer
+    - IT Knowledge Manager
+    - IT Service Catalog Manager
+    - VR Simulation Engineer
+    - IT Service Desk Manager
+    - IT Governance Analyst
+    - IT Asset Management Analyst
+    - Cloud Automation Engineer
+    - Quantum Nanotechnologist
+    - IT Security Training Specialist
+    - Blockchain Integration Engineer
+    - Quantum Electronics Engineer
+    - Edge Computing Solutions Architect
+    - IT Portfolio Manager
+    - IT Security Operations Analyst
+    - AI Infrastructure Engineer
+    - Quantum Control Systems Engineer
+    - Computational Economist
+    - Quantum Error Correction Engineer
+    - Blockchain Project Manager
+    - IT Release Manager
+    - IT Configuration Manager
+    - Edge Computing Data Scientist
+    - Quantum Information Security Analyst
+    - Quantum Communications Engineer
+    - Computational Sociologist
+    - IT Security Awareness Analyst
+    - Blockchain Solutions Architect
+    - IT Collaboration Specialist
+    - Quantum Photonics Engineer
+    - Quantum Processor Design Engineer
+    - IT Data Governance Analyst
+    - Cloud Optimization Engineer
+    - Quantum Robotics Engineer
+    - IT Problem Manager
+    - IT Security Compliance Analyst
+    - Blockchain Developer Advocate
+    - Quantum Software Architect
+    - Quantum Machine Learning Researcher
+    - Edge Computing Software Engineer
+    - IT Service Design Analyst
+    - Cloud Security Operations Analyst
+    - Blockchain Business Analyst
+    - Quantum AI Developer
+    - IT Security Governance Analyst
+    - Quantum Cryogenic Engineer
+    - Edge Computing Network Engineer
+    - IT Service Level Manager
+    - IT Security Strategy Analyst
+    - Blockchain Legal Consultant
+    - Quantum Magnetic Engineer
+    - IT Security Architecture Analyst
+    - Quantum Hardware Architect
+    - Edge Computing UX Designer
+    - Blockchain Marketing Specialist
+    - Quantum Circuit Design Engineer
+    - IT Security Risk Analyst
+    - Quantum Information Theorist
+    - IT Security Incident Responder
+    - Edge Computing Solutions Engineer
+    - Blockchain UX Designer
+    - Quantum Biophysicist
+    - IT Security Threat Analyst
+    - Blockchain Community Manager
+    - Quantum Algorithm Engineer
+    - Edge Computing DevOps Engineer
+    - Blockchain Smart Contracts Auditor
+    - Quantum Mechanical Engineer
+    - IT Security Program Manager
+    - Quantum Error Correction Researcher
+    - Edge Computing Security Analyst
+    - Blockchain Integration Specialist
+    - Quantum Electrical Engineer
+    - IT Security Research Analyst
+    - Blockchain Cryptoeconomics Analyst
+    - Quantum Materials Researcher
+    - IT Security Awareness Specialist
+    - Blockchain Protocol Engineer
+    - Quantum Software Developer
+    - Edge Computing AI Engineer
+    - IT Security Architecture Specialist
+    - Blockchain UI/UX Designer
+    - Quantum Algorithms Developer
+    - IT Security Governance Specialist
+    - Blockchain Full Stack Developer
+    - Quantum Device Engineer
+    - IT Security Strategy Specialist
+    - Blockchain QA Engineer
+    - Quantum Firmware Developer
+    - IT Security Architecture Specialist
+    - Blockchain Compliance Analyst
+    - Quantum Photonics Researcher
+    - IT Security Risk Specialist
+    - Blockchain Infrastructure Engineer
+    - Quantum Control Systems Researcher
+    - IT Security Incident Response Specialist
+    - Blockchain Business Development Manager
+    - Quantum Cryogenic Researcher
+    - IT Security Threat Specialist
+    - Blockchain Marketing Manager
+    - Quantum Mechanical Researcher
+    - IT Security Program Specialist
+    - Blockchain Smart Contracts Developer
+    - Quantum Algorithm Researcher
+    - Edge Computing Security Specialist
+    - Blockchain Integration Manager
+    - Quantum Electrical Researcher
+    - IT Security Research Specialist
+    - Blockchain Cryptoeconomics Researcher
+    - Quantum Materials Specialist
+    - IT Security Awareness Researcher
+    - Blockchain Protocol Researcher
+    - Quantum Software Researcher
+    - Edge Computing AI Specialist
+    - Blockchain UI/UX Researcher
+    - Quantum Algorithms Researcher
+    - IT Security Architecture Researcher
+    - Blockchain Full Stack Researcher
+    - Quantum Device Researcher
+    - IT Security Governance Researcher
+    - Blockchain QA Researcher
+    - Quantum Firmware Researcher
+    - IT Security Strategy Researcher
+    - Blockchain Compliance Researcher
+    - Quantum Photonics Specialist
+    - IT Security Risk Researcher
+    - Blockchain Infrastructure Researcher
+    - Quantum Control Systems Specialist
+    - IT Security Incident Response Researcher
+    - Blockchain Business Development Researcher
+    - Quantum Cryogenic Specialist
+    - IT Security Threat Researcher
+    - Blockchain Marketing Researcher
+    - Quantum Mechanical Specialist
+    - IT Security Program Researcher
+    - Blockchain Smart Contracts Researcher
+    - Quantum Algorithm Specialist
+    - Edge Computing Security Researcher
+    - Blockchain Integration Specialist
+    - Quantum Electrical Specialist
+    - IT Security Research Specialist
+    - Blockchain Cryptoeconomics Specialist
+    - Quantum Materials Researcher
+    - IT Security Awareness Specialist

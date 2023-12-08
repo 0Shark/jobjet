@@ -34,11 +34,14 @@ class ActionRegister(Action):
         login_response = requests.post(login_url, json=login_data).json()
 
         if "status" in login_response and login_response["status"] == "success":
-            dispatcher.utter_message(text="Login successful! Welcome to the job portal.")
+            dispatcher.utter_message(text="Login successful! Welcome to the job portal " + login_response["username"] + "!")
+            if len(login_response["invitations"]) > 0:
+                dispatcher.utter_message(text="You have " + str(len(login_response["invitations"])) + " new invitations!")
+                for invitation in login_response["invitations"]:
+                    dispatcher.utter_message(text="You have been invited from " + invitation["recruiter"] + " for the job " + invitation["job_category"] + ".")
         else:
             dispatcher.utter_message(text="Login failed! Please try again." + login_response["message"])
 
-        
         return []
     
 
@@ -57,9 +60,39 @@ class ActionLogin(Action):
         login_response = requests.post(login_url, json=login_data).json()
 
         if "status" in login_response and login_response["status"] == "success":
-            dispatcher.utter_message(text="Login successful! Welcome to the job portal.")
+            dispatcher.utter_message(text="Login successful! Welcome to the job portal " + login_response["username"] + "!")
+            if len(login_response["invitations"]) > 0:
+                dispatcher.utter_message(text="You have " + str(len(login_response["invitations"])) + " new invitations!")
+                for invitation in login_response["invitations"]:
+                    dispatcher.utter_message(text="You have been invited from " + invitation["recruiter"] + " for the job " + invitation["job_category"] + ".")
         else:
             dispatcher.utter_message(text="Login failed! Please try again.")
-
         
+        return []
+    
+
+class ActionGetJobsForCategory(Action):
+    def name(self) -> Text:
+        return "action_find_jobs"
+    
+    def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        job_category = tracker.get_slot("job_category")
+
+        print(f"Job category: {job_category}")
+
+        jobs_url = 'http://localhost:5000/get_jobs/'
+
+        data = {"job_category": job_category}
+
+        response = requests.post(jobs_url, json=data).json()
+
+        if "status" in response and response["status"] == "success":
+            dispatcher.utter_message(text="I found " + str(len(response["jobs"])) + " jobs for that category!")
+            for job_id, job_info in response["jobs"].items():
+                dispatcher.utter_message(text="Job title: " + job_info["title"] + " at " + job_info["company"] + " in " + job_info["location"] + ".")
+                dispatcher.utter_message(text="Date posted: " + job_info["date_posted"] + ".")
+                dispatcher.utter_message(text="Link: " + job_info["link"] + ".")
+        else:
+            dispatcher.utter_message(text="Oops! Something went wrong." + response["message"])
+
         return []

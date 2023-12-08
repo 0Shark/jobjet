@@ -17,3 +17,23 @@ rules:
   steps:
   - intent: user_gives_password
   - action: utter_ask_register_login
+
+- rule: If user says he is student, confirm it
+  steps:
+    - intent: user_is_student
+    - action: utter_confirm_student
+  
+- rule: If user says he is recruiter, confirm it
+  steps:
+    - intent: user_is_recruiter
+    - action: utter_confirm_recruiter
+
+- rule: If user says he is job poster, confirm it
+  steps:
+    - intent: user_is_job_poster
+    - action: utter_confirm_job_poster
+
+- rule: If user wants to view jobs, show them
+  steps:
+    - intent: user_asks_for_jobs
+    - action: action_find_jobs

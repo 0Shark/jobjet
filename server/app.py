@@ -77,7 +77,9 @@ def register():
 
     users[username] = {
         "id": str(uuid.uuid4()),
-        "password": password
+        "password": password,
+        "invitations": [],
+        "preferences": []
     }
     save_users(users)
 
@@ -92,7 +94,14 @@ def login():
 
     if username in users:
         if users[username]["password"] == password:
-            return {"status": "success", "message": "Login successful"}
+            return {
+                "status": "success", 
+                "message": "Login successful", 
+                "user_id": users[username]["id"], 
+                "username": username,
+                "preferences": users[username]["preferences"],
+                "invitations": users[username]["invitations"]
+            } 
         else:
             return {"status": "error", "message": "Incorrect password"}
     else:
@@ -119,7 +128,7 @@ def add_jobs(keyword, location):
         link = job.find('a', class_='base-card__full-link')['href']
     
         result[str(uuid.uuid4())] = {
-            'title': title, 
+            'title': keyword,
             'company': company, 
             'location': location, 
             'date_posted': date_posted,
@@ -129,6 +138,38 @@ def add_jobs(keyword, location):
     save_listings(result)
 
     return jsonify(result)
+
+# Get jobs for a specific category
+@app.route('/get_jobs/', methods=["POST"])
+def get_jobs():
+    data = request.get_json()
+    category = data.get("job_category")
+
+    # "6d3eb207-17d5-4526-8426-07c69375217b": {
+    #     "title": "Machine Learning Engineer",
+    #     "company": "Skale",
+    #     "location": "Munich, Bavaria, Germany",
+    #     "date_posted": "2023-10-27",
+    #     "link": "https://de.linkedin.com/jobs/view/machine-learning-engineer-at-skale-3744374619?refId=1GPkFn2rkECODQnK2WPeig%3D%3D&trackingId=a5AeTx%2Bfvmzv%2BJPtX9BeAw%3D%3D&position=10&pageNum=0&trk=public_jobs_jserp-result_search-card"
+    # },
+    # "64b70f00-5a76-4fe0-ba5c-d99afcae669f": {
+    #     "title": "AI Engineer Academy - Germany",
+    #     "company": "Avanade",
+    #     "location": "Munich, Bavaria, Germany",
+    #     "date_posted": "2023-11-19",
+    #     "link": "https://de.linkedin.com/jobs/view/ai-engineer-academy-germany-at-avanade-3751250844?refId=1GPkFn2rkECODQnK2WPeig%3D%3D&trackingId=LAAGw85eBqcpI3uWE0FpRg%3D%3D&position=11&pageNum=0&trk=public_jobs_jserp-result_search-card"
+    # },
+    
+    result = {}
+    # Get all jobs that include the category in their title or company
+    for listing_id, listing_info in listings.items():
+        if category.lower() in listing_info["title"].lower() or category.lower() in listing_info["company"].lower():
+            result[listing_id] = listing_info
+
+    if len(result) > 0:
+        return {"status": "success", "jobs": result}
+    else:
+        return {"status": "error", "message": "I could not find any jobs for that category. If you want to add jobs for that category, please login as a job poster."}
 
 
 if __name__ == "__main__":

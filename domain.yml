@@ -6,6 +6,7 @@ intents:
 - find_candidate
 - goodbye
 - greet
+- user_asks_for_jobs
 - user_gives_password
 - user_gives_role
 - user_gives_username
@@ -17,9 +18,10 @@ intents:
 - utter_goodbye
 - wrong_user_id
 entities:
-- type
+- job_category
 - password
 - username
+- type
 - role
 - id
 slots:
@@ -54,6 +56,12 @@ slots:
     - type: from_intent
       intent: user_is_job_poster
       value: job_poster
+  job_category:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: job_category
 responses:
   utter_greet:
   - text: Hey! Welcome to the job portal!
@@ -83,31 +91,18 @@ responses:
   utter_confirm_job_poster:
   - text: Alright, {username}! I'll refer to you as a job poster from now on. You can ask me to add new jobs from LinkedIn or ask me to update an existing job.
   - text: Awesome, {username}! You are now a job poster. I can add new jobs from LinkedIn or update an existing job for you.
-  utter_invalid_id:
-  - text: The following id [A-Z]{2}[0-9]{4} is wrong
-  utter_invalid_role:
-  - text: The following role [A-Z][A-Z] is wrong
-  utter_valid_role:
-  - text: The following role [A-Z][A-Z] is valid
   utter_ask_for_candidate:
-  - text: Which candidate would you like to invite? (Please enter the candidate id)
-  utter_find_candidate:
-  - text: I would like to invite the following candidate [A-Z][A-Z]
-  utter_invalid_candidate:
-  - text: The following candidate [A-Z][A-Z] is invalid
-  utter_valid_candidate:
-  - text: The following candidate [A-Z][A-Z] is valid
-  utter_ask_for_update:
-  - text: Which job would you like to update? (Please enter the job id)
+  - text: Which candidate would you like to invite? (Please refer to the candidate by their username)
 actions:
-- action_register
-- utter_ask_register_login
-- utter_greet
 - utter_confirm_student
+- action_login
+- utter_greet
+- utter_ask_role
+- action_find_jobs
+- utter_ask_register_login
 - utter_ask_username
 - utter_ask_password
-- utter_ask_role
-- action_login
+- action_register
 - utter_goodbye
 session_config:
   session_expiration_time: 60
