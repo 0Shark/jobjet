@@ -8,10 +8,9 @@ import os
 
 app = Flask(__name__)
 app.config["key"] = "t_h_d"
-USERS_FILE = os.getcwd() + "/users.json"
 
-#e ndryshova pak kyt se krijote file ne vedi.
-LISTINGS_FILE = os.getcwd() + "/listings.json"
+USERS_FILE = os.path.join(os.path.dirname(__file__), "users.json")
+LISTINGS_FILE = os.path.join(os.path.dirname(__file__), "listings.json")
 
 # Helper functions
 def load_users():

@@ -17,6 +17,7 @@ intents:
 - user_wants_to_register
 - utter_goodbye
 - wrong_user_id
+- user_apply_job
 entities:
 - job_category
 - password
