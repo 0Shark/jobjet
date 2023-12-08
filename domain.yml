@@ -79,6 +79,8 @@ responses:
   - text: What is your password?
   utter_ask_role:
   - text: What is your role (student, recruiter, job poster)?
+  utter_ask_job_preference:
+  - text: Which one of them would you like to apply for?
   utter_invitation:
   - text: The user has been informed
   - text: The candidate [A-Z][A-Z] has been informed
@@ -96,6 +98,7 @@ responses:
 actions:
 - utter_confirm_student
 - action_login
+- utter_ask_job_preference
 - utter_greet
 - utter_ask_role
 - action_find_jobs
@@ -104,6 +107,7 @@ actions:
 - utter_ask_password
 - action_register
 - utter_goodbye
+- action_change_preferences
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

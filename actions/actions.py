@@ -66,6 +66,7 @@ class ActionLogin(Action):
                 for invitation in login_response["invitations"]:
                     dispatcher.utter_message(text="You have been invited from " + invitation["recruiter"] + " for the job " + invitation["job_category"] + ".")
         else:
+            print(login_response)
             dispatcher.utter_message(text="Login failed! Please try again.")
         
         return []
@@ -93,6 +94,29 @@ class ActionGetJobsForCategory(Action):
                 dispatcher.utter_message(text="Date posted: " + job_info["date_posted"] + ".")
                 dispatcher.utter_message(text="Link: " + job_info["link"] + ".")
         else:
+            dispatcher.utter_message(text="Oops! Something went wrong." + response["message"])
+
+        return []
+
+class ActionChangePreferences(Action):
+    def name(self) -> Text:
+        return "action_change_preferences"
+    
+    def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        job_category = tracker.get_slot("job_category")
+
+        print(f"Job category: {job_category}")
+
+        preferences_url = 'http://localhost:5000/change_preferences/'
+
+        data = {"job_category": job_category}
+
+        response = requests.post(preferences_url, json=data).json()
+
+        if "status" in response and response["status"] == "success":
+            dispatcher.utter_message(text="Your preferences have been updated! Good luck with your job search!")
+        else:
+            print(response)
             dispatcher.utter_message(text="Oops! Something went wrong." + response["message"])
 
         return []

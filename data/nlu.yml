@@ -165,6 +165,13 @@ nlu:
     - Could you show me jobs for [Software Developer](job_category)
     - I want to see jobs for [Web Developer](job_category)
     - I want to view jobs for [Machine Learning Engineer](job_category)
+- intent: apply_job
+  examples: |
+    - I want to apply for [Software Engineer](job_category)
+    - I want to apply for [Machine Learning Engineer](job_category)
+    - I want to apply for [Data Scientist](job_category)
+    - I am applying for [Data Engineer](job_category)
+    - I woud like to apply for [AI Engineer](job_category)
 - lookup: job_category
   examples: |
     - Software Engineer

@@ -171,6 +171,15 @@ def get_jobs():
     else:
         return {"status": "error", "message": "I could not find any jobs for that category. If you want to add jobs for that category, please login as a job poster."}
 
+@app.route('/preferences', methods=["POST"])
+def preferences():
+    data=request.get_json()
+    username=data.get("username")
+    preferences=data.get("preferences")
+    users[username]["preferences"]=preferences
+    save_users(users)
+    return {"status":"success", "message":"Preferences saved successfully!"}
+
 
 if __name__ == "__main__":
     app.run(debug=True)
