@@ -172,10 +172,11 @@ def get_jobs():
 
 @app.route('/preferences', methods=["POST"])
 def preferences():
+    #preferences is an array of strings
     data=request.get_json()
     username=data.get("username")
-    preferences=data.get("preferences")
-    users[username]["preferences"]=preferences
+    preferences=data.get("job_category")
+    users[username]["preferences"].append(preferences)
     save_users(users)
     return {"status":"success", "message":"Preferences saved successfully!"}
 

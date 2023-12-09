@@ -33,12 +33,3 @@ rules:
     - intent: user_is_job_poster
     - action: utter_confirm_job_poster
 
-- rule: If user wants to view jobs, show them
-  steps:
-    - intent: user_asks_for_jobs
-    - action: action_find_jobs
-
-- rule: If user wants to apply for a job do so
-  steps:
-    - intent: user_apply_job
-    - action: action_change_preferences

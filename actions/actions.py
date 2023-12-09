@@ -102,21 +102,26 @@ class ActionChangePreferences(Action):
     def name(self) -> Text:
         return "action_change_preferences"
     
-    def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         job_category = tracker.get_slot("job_category")
+        username = tracker.get_slot("username")
 
         print(f"Job category: {job_category}")
 
-        preferences_url = 'http://localhost:5000/change_preferences/'
+        preferences_url = 'http://localhost:5000/preferences/'
+        data = {"username": username, "job_category": job_category}
 
-        data = {"job_category": job_category}
+        try:
+            response = requests.post(preferences_url, json=data).json()
 
-        response = requests.post(preferences_url, json=data).json()
+            if "status" in response and response["status"] == "success":
+                dispatcher.utter_message(text="Your preferences have been updated! Good luck with your job search!")
+            else:
+                print(response)
+                dispatcher.utter_message(text="Oops! Something went wrong." + response["message"])
 
-        if "status" in response and response["status"] == "success":
-            dispatcher.utter_message(text="Your preferences have been updated! Good luck with your job search!")
-        else:
-            print(response)
-            dispatcher.utter_message(text="Oops! Something went wrong." + response["message"])
+        except requests.exceptions.JSONDecodeError as e:
+            print(f"Error decoding JSON response: {str(e)}")
+            dispatcher.utter_message(text="Oops! Something went wrong. Please try again later.")
 
         return []
