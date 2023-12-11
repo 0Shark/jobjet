@@ -177,6 +177,17 @@ nlu:
     - I want to apply for [Web Developer](job_category)
     - I want to apply for [Working Student Software Engineer](job_category)
     - I want to apply for [Internship Software Engineer](job_category)
+- intent: recruiter_view_candidates
+  examples: |
+    - I want to view candidates for [Software Engineer](job_category)
+    - Can I see candidates for [Machine Learning Engineer](job_category)
+    - Show available candidates for [Data Scientist](job_category)
+    - What candidates are available for [Data Engineer](job_category)
+    - Are there any candidates for [AI Engineer](job_category)
+    - Show me candidates for [Data Analyst](job_category)
+    - Could you show me candidates for [Software Developer](job_category)
+    - I want to see candidates for [Web Developer](job_category)
+    - I want to view candidates for [Machine Learning Engineer](job_category)
 - lookup: job_category
   examples: |
     - Software Engineer

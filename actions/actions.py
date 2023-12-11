@@ -40,7 +40,7 @@ class ActionRegister(Action):
                 for invitation in login_response["invitations"]:
                     dispatcher.utter_message(text="You have been invited from " + invitation["recruiter"] + " for the job " + invitation["job_category"] + ".")
         else:
-            dispatcher.utter_message(text="Login failed! Please try again." + login_response["message"])
+            dispatcher.utter_message(text="Login failed! Please try again. " + login_response["message"])
 
         return []
     
@@ -76,25 +76,33 @@ class ActionGetJobsForCategory(Action):
     def name(self) -> Text:
         return "action_find_jobs"
     
-    def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+    def run(self, dispatcher:CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         job_category = tracker.get_slot("job_category")
-
-        print(f"Job category: {job_category}")
 
         jobs_url = 'http://localhost:5000/get_jobs/'
 
         data = {"job_category": job_category}
+
+        print(f"Showing jobs for {job_category}")
 
         response = requests.post(jobs_url, json=data).json()
 
         if "status" in response and response["status"] == "success":
             dispatcher.utter_message(text="I found " + str(len(response["jobs"])) + " jobs for that category!")
             for job_id, job_info in response["jobs"].items():
-                dispatcher.utter_message(text="Job title: " + job_info["title"] + " at " + job_info["company"] + " in " + job_info["location"] + ".")
-                dispatcher.utter_message(text="Date posted: " + job_info["date_posted"] + ".")
-                dispatcher.utter_message(text="Link: " + job_info["link"] + ".")
+                if job_info["title"]:
+                    dispatcher.utter_message(text="Job title: " + job_info["title"])
+                if job_info["company"]:
+                    dispatcher.utter_message(text="Company: " + job_info["company"])
+                if job_info["location"]:
+                    dispatcher.utter_message(text="Location: " + job_info["location"])
+                if job_info["date_posted"]:
+                    dispatcher.utter_message(text="Date posted: " + job_info["date_posted"])
+                if job_info["link"]:
+                    dispatcher.utter_message(text="Link: " + job_info["link"])
+                    
         else:
-            dispatcher.utter_message(text="Oops! Something went wrong." + response["message"])
+            dispatcher.utter_message(text="Oops! Something went wrong. " + response["message"])
 
         return []
 
@@ -106,19 +114,21 @@ class ActionChangePreferences(Action):
         job_category = tracker.get_slot("job_category")
         username = tracker.get_slot("username")
 
-        print(f"Job category: {job_category}")
+        print(f"Changing preferences for {username} to {job_category}")
 
-        preferences_url = 'http://localhost:5000/preferences/'
+        preferences_url = 'http://localhost:5000/update_preferences/'
         data = {"username": username, "job_category": job_category}
 
         try:
-            response = requests.post(preferences_url, json=data).json()
+            response = requests.post(preferences_url, json=data)
+
+            response = response.json()
 
             if "status" in response and response["status"] == "success":
                 dispatcher.utter_message(text="Your preferences have been updated! Good luck with your job search!")
             else:
                 print(response)
-                dispatcher.utter_message(text="Oops! Something went wrong." + response["message"])
+                dispatcher.utter_message(text="Oops! Something went wrong. " + response["message"])
 
         except requests.exceptions.JSONDecodeError as e:
             print(f"Error decoding JSON response: {str(e)}")
@@ -127,3 +137,29 @@ class ActionChangePreferences(Action):
         return []
 
 
+class ActionViewCandidates(Action):
+    def name(self) -> Text:
+        return "action_view_candidates"
+    
+    def run(self, dispatcher:CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        job_category = tracker.get_slot("job_category")
+        recruiter = tracker.get_slot("username")
+
+        jobs_url = 'http://localhost:5000/get_candidates/'
+
+        data = {"job_category": job_category, "recruiter": recruiter}
+
+        print(f"Showing candidates for {job_category}")
+
+        response = requests.post(jobs_url, json=data).json()
+
+        if "status" in response and response["status"] == "success":
+            dispatcher.utter_message(text="I found " + str(len(response["candidates"])) + " candidates interested in that category!")
+
+            for candidate in response["candidates"]:
+                dispatcher.utter_message(text="Candidate: " + candidate)
+            dispatcher.utter_message(text="Please tell me the username of the candidate you want to invite.")
+        else:
+            dispatcher.utter_message(text="Oops! Something went wrong. " + response["message"])
+
+        return []

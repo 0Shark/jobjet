@@ -3,7 +3,9 @@
         "id": "04d25e40-d7e9-407d-8f6e-c5ed727ce653",
         "password": "test123",
         "invitations": [],
-        "preferences": []
+        "preferences": [
+            "Data Scientist"
+        ]
     },
     "elmer": {
         "id": "e4806ad2-f16e-4d76-ace9-b194b7d5e4ac",

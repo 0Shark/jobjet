@@ -33,3 +33,12 @@ rules:
     - intent: user_is_job_poster
     - action: utter_confirm_job_poster
 
+- rule: If student wants to apply for a job, ask for preferences
+  steps:
+    - intent: user_apply_job
+    - action: action_change_preferences
+
+- rule: If recruiter wants to view candidates, show them
+  steps:
+    - intent: recruiter_view_candidates
+    - action: action_view_candidates

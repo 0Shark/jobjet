@@ -109,8 +109,6 @@ def login():
         return {"status": "error", "message": "Username does not exist"}
 
 
-# Job routes
-
 # Add new jobs from LinkedIn
 @app.route('/add_jobs/<keyword>/<location>')
 def add_jobs(keyword, location):
@@ -145,15 +143,9 @@ def add_jobs(keyword, location):
 def get_jobs():
     data = request.get_json()
     category = data.get("job_category")
-
-    # "6d3eb207-17d5-4526-8426-07c69375217b": {
-    #     "title": "Machine Learning Engineer",
-    #     "company": "Skale",
-    #     "location": "Munich, Bavaria, Germany",
-    #     "date_posted": "2023-10-27",
-    #     "link": "https://de.linkedin.com/jobs/view/machine-learning-engineer-at-skale-3744374619?refId=1GPkFn2rkECODQnK2WPeig%3D%3D&trackingId=a5AeTx%2Bfvmzv%2BJPtX9BeAw%3D%3D&position=10&pageNum=0&trk=public_jobs_jserp-result_search-card"
-    # }
     
+    print(f"Showing jobs for {category}")
+
     result = {}
     # Get all jobs that include the category in their title or company
     for listing_id, listing_info in listings.items():
@@ -165,20 +157,46 @@ def get_jobs():
     else:
         return {"status": "error", "message": "I could not find any jobs for that category. If you want to add jobs for that category, please login as a job poster."}
 
-@app.route('/preferences', methods=["POST"])
+# Update user preferences
+@app.route('/update_preferences/', methods=["POST"])
 def preferences():
-    #preferences is an array of strings
     data=request.get_json()
-    username=data.get("username")
-    #nuk jam i sigurt per emrin e job_category
+    username=data.get("username") 
     preferences=data.get("job_category")
-    users[username]["preferences"].append(preferences)
+
+    print(f"Changing preferences for {username} to {preferences}")
+
+    if username not in users:
+        result = {"status":"error", "message":"User does not exist!"}
+
+        return jsonify(result)
+    else:
+        users[username]["preferences"].append(preferences)
+        
     save_users(users)
-    return {"status":"success", "message":"Preferences saved successfully!"}
 
-#recruiter routes
+    result = {"status":"success", "message":"Preferences saved successfully!"}
 
-@app.route('/invite', methods=["POST"])
+    return jsonify(result)
+
+# Get candidates for a specific job category
+@app.route('/get_candidates/', methods=["POST"])
+def get_candidates():
+    data=request.get_json()
+    job_category=data.get("job_category")
+    recruiter=data.get("recruiter")
+
+    if recruiter not in users:
+        return {"status":"error", "message":"Sorry, you are not a registered recruiter!"}
+    else:
+        candidates=[]
+        for user in users:
+            if job_category in users[user]["preferences"]:
+                candidates.append(user)
+        return {"status":"success", "candidates":candidates}
+
+# Invite a candidate to apply for a job
+@app.route('/invite/', methods=["POST"])
 def invite():
     data=request.get_json()
     job_category=data.get("job_category")
@@ -191,23 +209,6 @@ def invite():
         save_users(users)
         return {"status":"success", "message":"Invitation sent successfully!"}
     
-
-#job poster routes
-@app.route('/post_job', methods=["POST"])
-def post_job():
-    data=request.get_json()
-    username=data.get("username")
-    title=data.get("job_category")
-
-    result={}
-    result[uuid.uuid4()]={
-        "title":title,
-        "job poster":username,
-        "date_posted": str(date.today())
-    }
-    save_listings(result)
-    return {"status":"success", "message":"Job posted successfully!"}
-   
 
 if __name__ == "__main__":
     app.run(debug=True)

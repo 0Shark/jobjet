@@ -46,7 +46,6 @@ stories:
 - story: User chooses one of the jobs to apply for
   steps:
   - checkpoint: action_find_jobs
-  - action: utter_ask_job_preference
   - intent: user_apply_job
   - action: action_change_preferences
 
@@ -69,7 +68,7 @@ stories:
 
 
 # Interactive stories to improve accuracy
-- story: interactive_story_1
+- story: Student wants to register, views jobs, applies for one
   steps:
   - intent: greet
   - action: utter_greet
@@ -99,14 +98,10 @@ stories:
   - slot_was_set:
     - job_category: Web Developer
   - action: action_find_jobs
-  - action: utter_ask_job_preference
   - intent: user_apply_job
-    entities:
-    - job_category: Web Developer at Google
-  - slot_was_set:
-    - job_category: Web Developer at Google
+  - action: action_change_preferences
 
-- story: interactive_story_2
+- story: Recruiter wants to login
   steps:
   - intent: greet
   - action: utter_greet
@@ -130,8 +125,10 @@ stories:
   - slot_was_set:
     - role: recruiter
   - action: utter_confirm_recruiter
+  - intent: recruiter_view_candidates
+  - action: action_view_candidates
 
-- story: interactive_story_3
+- story: Student wants to login, views jobs, applies for one
   steps:
   - intent: greet
   - action: utter_greet
@@ -161,14 +158,5 @@ stories:
   - slot_was_set:
     - job_category: Machine Learning Engineer
   - action: action_find_jobs
-  - action: utter_ask_job_preference
   - intent: user_apply_job
-    entities:
-    - job_category: Machine Learning Engineer at BMW
-  - slot_was_set:
-    - job_category: Machine Learning Engineer at BMW
-
- #- checkpoint: action_find_jobs
-  #- action: utter_ask_job_preference
-  #- intent: user_apply_job
-  #- action: action_change_preferences
+  - action: action_change_preferences
