@@ -5,6 +5,7 @@ from flask import Flask, jsonify
 import requests
 from bs4 import BeautifulSoup
 import os
+from datetime import date
 
 app = Flask(__name__)
 app.config["key"] = "t_h_d"
@@ -34,10 +35,11 @@ def save_listings(listings):
     except FileNotFoundError:
         old_listings = {}
 
-    # Update old_listings with the new listings
+    # Convert UUID keys to strings before updating
     for listing_id, listing_info in listings.items():
-        if listing_id not in old_listings:
-            old_listings[listing_id] = listing_info
+        str_listing_id = str(listing_id)
+        if str_listing_id not in old_listings:
+            old_listings[str_listing_id] = listing_info
 
     # Save the updated listings back to the file
     with open(LISTINGS_FILE, 'w') as file:
@@ -150,14 +152,7 @@ def get_jobs():
     #     "location": "Munich, Bavaria, Germany",
     #     "date_posted": "2023-10-27",
     #     "link": "https://de.linkedin.com/jobs/view/machine-learning-engineer-at-skale-3744374619?refId=1GPkFn2rkECODQnK2WPeig%3D%3D&trackingId=a5AeTx%2Bfvmzv%2BJPtX9BeAw%3D%3D&position=10&pageNum=0&trk=public_jobs_jserp-result_search-card"
-    # },
-    # "64b70f00-5a76-4fe0-ba5c-d99afcae669f": {
-    #     "title": "AI Engineer Academy - Germany",
-    #     "company": "Avanade",
-    #     "location": "Munich, Bavaria, Germany",
-    #     "date_posted": "2023-11-19",
-    #     "link": "https://de.linkedin.com/jobs/view/ai-engineer-academy-germany-at-avanade-3751250844?refId=1GPkFn2rkECODQnK2WPeig%3D%3D&trackingId=LAAGw85eBqcpI3uWE0FpRg%3D%3D&position=11&pageNum=0&trk=public_jobs_jserp-result_search-card"
-    # },
+    # }
     
     result = {}
     # Get all jobs that include the category in their title or company
@@ -175,11 +170,44 @@ def preferences():
     #preferences is an array of strings
     data=request.get_json()
     username=data.get("username")
+    #nuk jam i sigurt per emrin e job_category
     preferences=data.get("job_category")
     users[username]["preferences"].append(preferences)
     save_users(users)
     return {"status":"success", "message":"Preferences saved successfully!"}
 
+#recruiter routes
+
+@app.route('/invite', methods=["POST"])
+def invite():
+    data=request.get_json()
+    job_category=data.get("job_category")
+    username=data.get("username")
+
+    if username not in users:
+        return {"status":"error", "message":"User does not exist!"}
+    else:
+        users[username]["invitations"].append(job_category)
+        save_users(users)
+        return {"status":"success", "message":"Invitation sent successfully!"}
+    
+
+#job poster routes
+@app.route('/post_job', methods=["POST"])
+def post_job():
+    data=request.get_json()
+    username=data.get("username")
+    title=data.get("job_category")
+
+    result={}
+    result[uuid.uuid4()]={
+        "title":title,
+        "job poster":username,
+        "date_posted": str(date.today())
+    }
+    save_listings(result)
+    return {"status":"success", "message":"Job posted successfully!"}
+   
 
 if __name__ == "__main__":
     app.run(debug=True)
