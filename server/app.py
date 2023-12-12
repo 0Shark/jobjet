@@ -196,18 +196,24 @@ def get_candidates():
         return {"status":"success", "candidates":candidates}
 
 # Invite a candidate to apply for a job
-@app.route('/invite/', methods=["POST"])
+@app.route('/invite_candidate/', methods=["POST"])
 def invite():
     data=request.get_json()
     job_category=data.get("job_category")
-    username=data.get("username")
+    recruiter=data.get("recruiter")
+    candidate_username=data.get("candidate")
 
-    if username not in users:
-        return {"status":"error", "message":"User does not exist!"}
+    print(f"Sending invitation from {recruiter} to {candidate_username} for {job_category}")
+
+    if candidate_username is None:
+        return {"status":"error", "message":"Please provide a candidate username! Rasa may have missed your candidate name. Please try again."}
+
+    if candidate_username not in users:
+        return {"status":"error", "message": "Sorry, this user with username " + candidate_username + " does not exist!"}
     else:
-        users[username]["invitations"].append(job_category)
+        users[candidate_username]["invitations"].append({"recruiter":recruiter, "job_category":job_category})
         save_users(users)
-        return {"status":"success", "message":"Invitation sent successfully!"}
+        return {"status":"success", "message":"Invitation sent successfully to " + candidate_username + "!"}
     
 
 if __name__ == "__main__":

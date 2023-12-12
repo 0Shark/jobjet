@@ -188,6 +188,19 @@ nlu:
     - Could you show me candidates for [Software Developer](job_category)
     - I want to see candidates for [Web Developer](job_category)
     - I want to view candidates for [Machine Learning Engineer](job_category)
+- intent: recruiter_invite_candidate
+  examples: |
+    - I want to invite [juled](candidate_username) for [Software Engineer](job_category)
+    - I want to invite [elmer](candidate_username) for [Machine Learning Engineer](job_category)
+    - I want to invite [jz19337](candidate_username) for [Data Scientist](job_category)
+    - I want to invite [ed01551](candidate_username) for [Data Engineer](job_category)
+    - I want to invite [ugarmann](candidate_username) for [AI Engineer](job_category)
+    - I want to invite [jack15](candidate_username) for [Data Analyst](job_category)
+    - I want to invite [elmer_dema](candidate_username) for [Software Developer](job_category)
+    - I want to invite [David Beckham](candidate_username) for [Web Developer](job_category)
+    - I want to invite [Wayne Rooney](candidate_username) for [Working Student Software Engineer](job_category)
+    - I want to invite [Cristiano Ronaldo](candidate_username) for [Internship Software Engineer](job_category)
+    - Invite [albert](candidate_username) for [Software Engineer](job_category)
 - lookup: job_category
   examples: |
     - Software Engineer
@@ -497,3 +510,80 @@ nlu:
     - Blockchain Cryptoeconomics Specialist
     - Quantum Materials Researcher
     - IT Security Awareness Specialist
+- lookup: username
+  examples: |
+    - Jhon Doe
+    - Jhonny Depp
+    - Albert Einstein
+    - jhon_doe
+    - jhonny_depp
+    - albert_einstein
+    - elmer_dema
+    - juled_zaganjori
+    - david_beckham
+    - Wayne Rooney
+    - Cristiano Ronaldo
+    - Lionel Messi
+    - juled
+    - elmer
+    - jz19337
+    - ed01551
+    - ugarmann
+    - jack15
+    - jz19337
+  
+- lookup: password
+  examples: |
+    - Password123
+    - DontHackMe
+    - Qwerty123
+    - ThisIsMyPassword
+    - 123FakePassword
+    - password123
+    - dont_hack_me
+    - qwerty123
+    - this_is_my_password
+    - 123_fake_password
+    - password_123
+    - dont_hack_me
+    - qwerty_123
+    - this_is_my_password
+    - 123_fake_password
+    - password123
+    - Qwerty123
+    - test123
+    - python2021
+    - cranberry
+    - python2004
+    - python2003
+    - python2003
+    - zebra123
+- lookup: candidate_username
+  examples: |
+    - juled
+    - elmer
+    - jz19337
+    - ed01551
+    - ugarmann
+    - jack15
+    - elmer_dema
+    - David Beckham
+    - Wayne Rooney
+    - Cristiano Ronaldo
+    - Lionel Messi
+    - albert
+    - jhon_doe
+    - jhonny_depp
+    - albert_einstein
+    - jhon_doe
+    - jhonny_depp
+    - albert_einstein
+    - elmer_dema
+    - juled_zaganjori
+    - david_beckham
+    - Wayne Rooney
+    - Cristiano Ronaldo
+    - Lionel Messi
+    - anna
+    - olivia_wilde23
+    - j3ff_b3z0s

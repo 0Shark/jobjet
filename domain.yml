@@ -19,6 +19,7 @@ intents:
 - wrong_user_id
 - user_apply_job
 - recruiter_view_candidates
+- recruiter_invite_candidate
 entities:
 - job_category
 - password
@@ -64,6 +65,12 @@ slots:
     mappings:
     - type: from_entity
       entity: job_category
+  candidate_username:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: candidate_username
 responses:
   utter_greet:
   - text: Hey! Welcome to the job portal!
@@ -81,9 +88,6 @@ responses:
   - text: What is your password?
   utter_ask_role:
   - text: What is your role (student, recruiter, job poster)?
-  utter_invitation:
-  - text: The user has been informed
-  - text: The candidate [A-Z][A-Z] has been informed
   utter_confirm_student:
   - text: Alright, {username}! I'll refer to you as a student from now on. You can ask me to show you available jobs or ask me to apply for a job.
   - text: Awesome, {username}! You are now a student. I can show you available jobs or apply for a job for you.
@@ -93,8 +97,6 @@ responses:
   utter_confirm_job_poster:
   - text: Alright, {username}! I'll refer to you as a job poster from now on. You can ask me to add new jobs from LinkedIn or ask me to update an existing job.
   - text: Awesome, {username}! You are now a job poster. I can add new jobs from LinkedIn or update an existing job for you.
-  utter_ask_for_candidate:
-  - text: Which candidate would you like to invite? (Please refer to the candidate by their username)
 actions:
 - utter_confirm_student
 - action_login
@@ -108,6 +110,7 @@ actions:
 - utter_goodbye
 - action_change_preferences
 - action_view_candidates
+- action_invite_candidate
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

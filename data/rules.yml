@@ -42,3 +42,8 @@ rules:
   steps:
     - intent: recruiter_view_candidates
     - action: action_view_candidates
+
+- rule: If recruiter wants to invite a candidate, invite them
+  steps:
+    - intent: recruiter_invite_candidate
+    - action: action_invite_candidate

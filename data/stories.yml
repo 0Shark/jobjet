@@ -51,11 +51,31 @@ stories:
 
 
 # User is recruiter
-- story: User chooses recruiter
+- story: User chooses recruiter and wants to view candidates
   steps:
   - checkpoint: ask_user_role
   - intent: user_is_recruiter
   - action: utter_confirm_recruiter
+  - intent: recruiter_view_candidates
+  - action: action_view_candidates
+
+- story: User chooses recruiter and wants to invite a candidate
+  steps:
+  - checkpoint: ask_user_role
+  - intent: user_is_recruiter
+  - action: utter_confirm_recruiter
+  - intent: recruiter_invite_candidate
+  - action: action_invite_candidate
+
+- story: User chooses recruiter, views candidates, invites one
+  steps:
+  - checkpoint: ask_user_role
+  - intent: user_is_recruiter
+  - action: utter_confirm_recruiter
+  - intent: recruiter_view_candidates
+  - action: action_view_candidates
+  - intent: recruiter_invite_candidate
+  - action: action_invite_candidate
 
 # User is job poster
 - story: User chooses job poster

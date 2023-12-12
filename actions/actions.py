@@ -158,7 +158,32 @@ class ActionViewCandidates(Action):
 
             for candidate in response["candidates"]:
                 dispatcher.utter_message(text="Candidate: " + candidate)
-            dispatcher.utter_message(text="Please tell me the username of the candidate you want to invite.")
+            dispatcher.utter_message(text="Which candidate would you like to invite? (Please refer to the candidate by their username)")
+        else:
+            dispatcher.utter_message(text="Oops! Something went wrong. " + response["message"])
+
+        return []
+    
+
+class ActionInviteCandidate(Action):
+    def name(self) -> Text:
+        return "action_invite_candidate"
+    
+    def run(self, dispatcher:CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        candidate = tracker.get_slot("candidate_username")
+        recruiter = tracker.get_slot("username")
+        job_category = tracker.get_slot("job_category")
+
+        jobs_url = 'http://localhost:5000/invite_candidate/'
+
+        data = {"job_category": job_category, "recruiter": recruiter, "candidate": candidate}
+
+        print(f"Iniviting {candidate} for {job_category} by {recruiter}")
+
+        response = requests.post(jobs_url, json=data).json()
+
+        if "status" in response and response["status"] == "success":
+            dispatcher.utter_message(text="Great! " + response["message"])
         else:
             dispatcher.utter_message(text="Oops! Something went wrong. " + response["message"])
 
