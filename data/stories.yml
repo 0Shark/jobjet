@@ -206,7 +206,7 @@ stories:
   - action: utter_confirm_recruiter
   - intent: recruiter_invite_candidate
     entities:
-    - candidate_username: juled
+    - candidate_username: elmer
     - job_category: AI Engineer
   - slot_was_set:
     - job_category: AI Engineer

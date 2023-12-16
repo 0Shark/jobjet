@@ -8,6 +8,11 @@ rules:
   - action: utter_greet
   - action: utter_ask_username
 
+- ruke: If user says thanks, say welcome
+  steps:
+  - intent: thanks
+  - action: utter_welcome
+
 - rule: If the user gives username, ask for password
   steps:
   - intent: user_gives_username
@@ -17,6 +22,18 @@ rules:
   steps:
   - intent: user_gives_password
   - action: utter_ask_register_login
+
+- rule: If user wants to register, register them
+  steps:
+  - intent: user_wants_to_register
+  - action: action_register
+  - action: utter_ask_role
+
+- rule: If user wants to login, log them in
+  steps:
+  - intent: user_wants_to_login
+  - action: action_login
+  - action: utter_ask_role
 
 - rule: If user says he is student, confirm it
   steps:
@@ -37,6 +54,11 @@ rules:
   steps:
     - intent: user_apply_job
     - action: action_change_preferences
+
+- rule: If user wants to view jobs, show them
+  steps:
+    - intent: user_asks_for_jobs
+    - action: action_find_jobs
 
 - rule: If recruiter wants to view candidates, show them
   steps:

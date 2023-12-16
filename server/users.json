@@ -6,6 +6,10 @@
             {
                 "recruiter": "jz19337",
                 "job_category": "Data Scientist"
+            },
+            {
+                "recruiter": "elmer",
+                "job_category": "Web Developer"
             }
         ],
         "preferences": [
@@ -16,7 +20,9 @@
         "id": "e4806ad2-f16e-4d76-ace9-b194b7d5e4ac",
         "password": "python2003",
         "invitations": [],
-        "preferences": []
+        "preferences": [
+            "Web Developer"
+        ]
     },
     "jz19337": {
         "id": "6d3f219e-fdf7-4533-ab63-dade8c24d3c2",

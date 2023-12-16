@@ -67,7 +67,7 @@ class ActionLogin(Action):
                     dispatcher.utter_message(text="You have been invited from " + invitation["recruiter"] + " for the job " + invitation["job_category"] + ".")
         else:
             print(login_response)
-            dispatcher.utter_message(text="Login failed! Please try again.")
+            dispatcher.utter_message(text="Login failed! Please try again. " + login_response["message"])
         
         return []
     
@@ -100,6 +100,8 @@ class ActionGetJobsForCategory(Action):
                     dispatcher.utter_message(text="Date posted: " + job_info["date_posted"])
                 if job_info["link"]:
                     dispatcher.utter_message(text="Link: " + job_info["link"])
+                
+                dispatcher.utter_message(text="-" * 10)
                     
         else:
             dispatcher.utter_message(text="Oops! Something went wrong. " + response["message"])

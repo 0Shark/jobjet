@@ -21,6 +21,7 @@ intents:
 - utter_goodbye
 - wrong_user_id
 - user_add_new_jobs
+- thanks
 entities:
 - username
 - candidate_username
@@ -97,8 +98,10 @@ responses:
   - text: Alright, {username}! I'll refer to you as a recruiter from now on. You can ask me to show you available candidates for a job type or ask me to invite a specific candidate for a job.
   - text: Awesome, {username}! You are now a recruiter. I can show you available candidates for a job type or invite a specific candidate for a job.
   utter_confirm_job_poster:
-  - text: Alright, {username}! I'll refer to you as a job poster from now on. You can ask me to add new jobs from LinkedIn or ask me to update an existing job.
+  - text: Alright, {username}! I'll refer to you as a job poster from now on. You can ask me to add new jobs from LinkedIn or ask me to show you jobs for a specific job category.
   - text: Awesome, {username}! You are now a job poster. I can add new jobs from LinkedIn or update an existing job for you.
+  utter_welcome:
+  - text: You're welcome!
 actions:
 - utter_confirm_recruiter
 - action_invite_candidate

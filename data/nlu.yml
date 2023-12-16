@@ -50,6 +50,16 @@ nlu:
     - don't like that
     - no way
     - not really
+- intent: thanks
+  examples: |
+    - Thanks
+    - Thank you
+    - Thank you so much
+    - Thanks bot
+    - Thanks for that
+    - cheers
+    - cheers bro
+    - ok thanks!
 - intent: user_wants_to_register
   examples: |
     - I want to register
@@ -75,20 +85,13 @@ nlu:
     - Add new jobs in [Data Analyst](job_category)
 - intent: user_gives_username
   examples: |
-    - My username is [Juled Zaganjori](username)
-    - My username is [Jhon Doe](username)
-    - The username is [Elmer Dema](username)
-    - Username is [Jhonny Depp](username)
-    - My username is [Albert Einstein](username)
-    - My username is [jhon_doe](username)
+    - My username is [guest](username)
+    - Username is [jhon_doe](username)
     - My username is [jhonny_depp](username)
     - My username is [albert_einstein](username)
     - My username is [elmer_dema](username)
-    - My username is [juled_zaganjori](username)
+    - The username is [juled_zaganjori](username)
     - My username is [david_beckham](username)
-    - My username is [Wayne Rooney](username)
-    - My username is [Cristiano Ronaldo](username)
-    - My username is [Lionel Messi](username)
     - My username is [juled](username)
     - My username is [elmer](username)
     - My username is [jz19337](username)
@@ -98,6 +101,7 @@ nlu:
     - My username is [jz19337](username)
 - intent: user_gives_password
   examples: |
+    - My password is [guest](password)
     - My password is [Password123](password)
     - Password is [DontHackMe](password)
     - My pass is [Qwerty123](password)
@@ -207,11 +211,7 @@ nlu:
     - I want to invite [ugarmann](candidate_username) for [AI Engineer](job_category)
     - I want to invite [jack15](candidate_username) for [Data Analyst](job_category)
     - I want to invite [elmer_dema](candidate_username) for [Software Developer](job_category)
-    - I want to invite [David Beckham](candidate_username) for [Web Developer](job_category)
-    - I want to invite [Wayne Rooney](candidate_username) for [Working Student Software Engineer](job_category)
-    - I want to invite [Cristiano Ronaldo](candidate_username) for [Internship Software Engineer](job_category)
     - Invite [albert](candidate_username) for [Software Engineer](job_category)
-    - I want to invite [juled](candidate_username) for a [AI Engineer](job_category) position
 - lookup: job_category
   examples: |
     - Software Engineer
