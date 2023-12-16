@@ -17,7 +17,7 @@ class ActionRegister(Action):
         username=tracker.get_slot("username")
         password=tracker.get_slot("password")
 
-        print(f"Received password: {password} Username: {username}")
+        print(f"REGISTER NEW USER: Username: {username} Password: {password}")
 
         register_url="http://localhost:5000/register"
         register_data={"username":username, "password":password}
@@ -53,7 +53,7 @@ class ActionLogin(Action):
         username=tracker.get_slot("username")
         password=tracker.get_slot("password")
 
-        print(f"Password: {password} Username: {username}")
+        print(f"LOGIN USER: Username: {username} Password: {password}")
 
         login_url="http://localhost:5000/login"
         login_data={"username":username, "password":password}
@@ -83,7 +83,7 @@ class ActionGetJobsForCategory(Action):
 
         data = {"job_category": job_category}
 
-        print(f"Showing jobs for {job_category}")
+        print(f"SHOWING JOBS FOR {job_category}")
 
         response = requests.post(jobs_url, json=data).json()
 
@@ -114,7 +114,7 @@ class ActionChangePreferences(Action):
         job_category = tracker.get_slot("job_category")
         username = tracker.get_slot("username")
 
-        print(f"Changing preferences for {username} to {job_category}")
+        print(f"CHANGING PREFERENCES FOR {username} TO {job_category}")
 
         preferences_url = 'http://localhost:5000/update_preferences/'
         data = {"username": username, "job_category": job_category}
@@ -149,7 +149,7 @@ class ActionViewCandidates(Action):
 
         data = {"job_category": job_category, "recruiter": recruiter}
 
-        print(f"Showing candidates for {job_category}")
+        print(f"SHOWING CANDIDATES FOR {job_category} FOR {recruiter}")
 
         response = requests.post(jobs_url, json=data).json()
 
@@ -178,7 +178,7 @@ class ActionInviteCandidate(Action):
 
         data = {"job_category": job_category, "recruiter": recruiter, "candidate": candidate}
 
-        print(f"Iniviting {candidate} for {job_category} by {recruiter}")
+        print(f"INVITING {candidate} FOR {job_category} BY {recruiter}")
 
         response = requests.post(jobs_url, json=data).json()
 

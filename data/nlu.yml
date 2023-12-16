@@ -141,6 +141,7 @@ nlu:
     - I want to recruit a new employee
     - I am looking for a new employee
     - I am a job recruiter
+    - I'm a recruiter
 - intent: find_candidate
   examples: |
     - I want to find {"entity":"id"}
@@ -201,6 +202,7 @@ nlu:
     - I want to invite [Wayne Rooney](candidate_username) for [Working Student Software Engineer](job_category)
     - I want to invite [Cristiano Ronaldo](candidate_username) for [Internship Software Engineer](job_category)
     - Invite [albert](candidate_username) for [Software Engineer](job_category)
+    - I want to invite [juled](candidate_username) for a [AI Engineer](job_category) position
 - lookup: job_category
   examples: |
     - Software Engineer
@@ -531,7 +533,6 @@ nlu:
     - ugarmann
     - jack15
     - jz19337
-  
 - lookup: password
   examples: |
     - Password123

@@ -180,3 +180,34 @@ stories:
   - action: action_find_jobs
   - intent: user_apply_job
   - action: action_change_preferences
+- story: Recruiter wants to login, views candidates, invites one
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_username
+  - intent: user_gives_username
+    entities:
+    - username: jz19337
+  - slot_was_set:
+    - username: jz19337
+  - action: utter_ask_password
+  - intent: user_gives_password
+    entities:
+    - password: zebra123
+  - slot_was_set:
+    - password: zebra123
+  - action: utter_ask_register_login
+  - intent: user_wants_to_login
+  - action: action_login
+  - action: utter_ask_role
+  - intent: user_is_recruiter
+  - slot_was_set:
+    - role: recruiter
+  - action: utter_confirm_recruiter
+  - intent: recruiter_invite_candidate
+    entities:
+    - candidate_username: juled
+    - job_category: AI Engineer
+  - slot_was_set:
+    - job_category: AI Engineer
+  - action: action_invite_candidate

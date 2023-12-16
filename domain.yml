@@ -6,6 +6,9 @@ intents:
 - find_candidate
 - goodbye
 - greet
+- recruiter_invite_candidate
+- recruiter_view_candidates
+- user_apply_job
 - user_asks_for_jobs
 - user_gives_password
 - user_gives_role
@@ -17,13 +20,11 @@ intents:
 - user_wants_to_register
 - utter_goodbye
 - wrong_user_id
-- user_apply_job
-- recruiter_view_candidates
-- recruiter_invite_candidate
 entities:
+- username
+- candidate_username
 - job_category
 - password
-- username
 - type
 - role
 - id
@@ -98,19 +99,20 @@ responses:
   - text: Alright, {username}! I'll refer to you as a job poster from now on. You can ask me to add new jobs from LinkedIn or ask me to update an existing job.
   - text: Awesome, {username}! You are now a job poster. I can add new jobs from LinkedIn or update an existing job for you.
 actions:
-- utter_confirm_student
+- utter_confirm_recruiter
+- action_invite_candidate
 - action_login
 - utter_greet
-- utter_ask_role
-- action_find_jobs
 - utter_ask_register_login
+- utter_ask_role
 - utter_ask_username
 - utter_ask_password
+- utter_confirm_student
+- action_find_jobs
 - action_register
 - utter_goodbye
 - action_change_preferences
 - action_view_candidates
-- action_invite_candidate
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

@@ -2,7 +2,12 @@
     "juled": {
         "id": "04d25e40-d7e9-407d-8f6e-c5ed727ce653",
         "password": "test123",
-        "invitations": [],
+        "invitations": [
+            {
+                "recruiter": "jz19337",
+                "job_category": "Data Scientist"
+            }
+        ],
         "preferences": [
             "Data Scientist"
         ]
