@@ -47,3 +47,8 @@ rules:
   steps:
     - intent: recruiter_invite_candidate
     - action: action_invite_candidate
+
+- rule: If user wants to add new jobs, ask for details
+  steps:
+    - intent: user_add_new_jobs
+    - action: action_add_new_jobs

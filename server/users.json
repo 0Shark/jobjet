@@ -23,5 +23,11 @@
         "password": "zebra123",
         "invitations": [],
         "preferences": []
+    },
+    "guest": {
+        "id": "4aa0db78-39c5-49fb-8f46-f55a088addbe",
+        "password": "guest",
+        "invitations": [],
+        "preferences": []
     }
 }

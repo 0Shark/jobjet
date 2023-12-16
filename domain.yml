@@ -20,6 +20,7 @@ intents:
 - user_wants_to_register
 - utter_goodbye
 - wrong_user_id
+- user_add_new_jobs
 entities:
 - username
 - candidate_username
@@ -113,6 +114,7 @@ actions:
 - utter_goodbye
 - action_change_preferences
 - action_view_candidates
+- action_add_new_jobs
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

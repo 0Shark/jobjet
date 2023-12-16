@@ -73,6 +73,9 @@ def register():
 
     print(f"Received password: {password} Username: {username}")
 
+    if username is None or password is None:
+        return {"status": "error", "message": "Please provide a username and a password! Rasa may have missed your username or password. Please try again or use our 'guest' account with username 'guest' and password 'guest'."}
+
     if username in users:
         return {"status": "error", "message": "Username already exists"}
 
@@ -110,9 +113,13 @@ def login():
 
 
 # Add new jobs from LinkedIn
-@app.route('/add_jobs/<keyword>/<location>')
-def add_jobs(keyword, location):
-    url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=' + keyword + '&location=' + location
+@app.route('/add_jobs/<keyword>/<general_location>', methods=["POST"])
+def add_jobs(keyword, general_location):
+    # Set default values if no keyword
+    if keyword is None:
+        keyword = 'software engineer'
+
+    url = 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=' + keyword + '&location=' + general_location
     response = requests.get(url)
     
     soup = BeautifulSoup(response.text, 'html.parser')  
@@ -136,7 +143,10 @@ def add_jobs(keyword, location):
 
     save_listings(result)
 
-    return jsonify(result)
+    if len(result) > 0:
+        return {"status": "success", "message": "Jobs added successfully! I found " + str(len(result)) + " jobs for " + keyword + " in " + general_location + "."}
+    else:
+        return {"status": "error", "message": "Sorry, I could not find any jobs for " + keyword + " in " + general_location + "."}
 
 # Get jobs for a specific category
 @app.route('/get_jobs/', methods=["POST"])

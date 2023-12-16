@@ -64,6 +64,15 @@ nlu:
     - Let me log in
     - login
     - log in
+- intent: user_add_new_jobs
+  examples: |
+    - I want to add new jobs for [Software Engineer](job_category)
+    - Can I add new jobs for [Machine Learning Engineer](job_category)
+    - Add new jobs for [Data Scientist](job_category)
+    - I want to add new jobs for [Web Developer](job_category)
+    - I need to add new jobs for [Data Engineer](job_category)
+    - You need to add new jobs for [AI Engineer](job_category)
+    - Add new jobs in [Data Analyst](job_category)
 - intent: user_gives_username
   examples: |
     - My username is [Juled Zaganjori](username)

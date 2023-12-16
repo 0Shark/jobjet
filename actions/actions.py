@@ -26,7 +26,7 @@ class ActionRegister(Action):
         if "status" in register_response and register_response["status"] == "success":
             dispatcher.utter_message(text="User created! Your id is: " + register_response["user_id"])
         else:
-            dispatcher.utter_message(text="Registration failed" + register_response["message"])
+            dispatcher.utter_message(text="Registration failed! " + register_response["message"])
 
 
         login_url="http://localhost:5000/login"
@@ -181,6 +181,33 @@ class ActionInviteCandidate(Action):
         print(f"INVITING {candidate} FOR {job_category} BY {recruiter}")
 
         response = requests.post(jobs_url, json=data).json()
+
+        if "status" in response and response["status"] == "success":
+            dispatcher.utter_message(text="Great! " + response["message"])
+        else:
+            dispatcher.utter_message(text="Oops! Something went wrong. " + response["message"])
+
+        return []
+    
+
+class ActionAddNewJobs(Action):
+    def name(self) -> Text:
+        return "action_add_new_jobs"
+    
+    def run(self, dispatcher:CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        job_category = tracker.get_slot("job_category")
+
+        if job_category is None:
+            dispatcher.utter_message(text="Oops! Something went wrong. I couldn't find the job category you were looking for. Maybe Rasa missed it. Please try again.")
+            return []
+        
+        jobs_url = f'http://localhost:5000/add_jobs/{job_category}/Germany'
+
+        data = {"job_category": job_category}
+
+        print(f"ADDING NEW JOBS FOR {job_category}")
+
+        response = requests.post(jobs_url).json()
 
         if "status" in response and response["status"] == "success":
             dispatcher.utter_message(text="Great! " + response["message"])
