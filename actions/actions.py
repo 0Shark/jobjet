@@ -78,6 +78,11 @@ class ActionGetJobsForCategory(Action):
     
     def run(self, dispatcher:CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         job_category = tracker.get_slot("job_category")
+        
+        # if job_category is None
+        if job_category is None:
+            dispatcher.utter_message(text="Oops! I need a job category from you. Maybe Rasa missed it? Please try again.")
+            return []
 
         jobs_url = 'http://localhost:5000/get_jobs/'
 

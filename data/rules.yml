@@ -8,7 +8,7 @@ rules:
   - action: utter_greet
   - action: utter_ask_username
 
-- ruke: If user says thanks, say welcome
+- rule: If user says thanks, say welcome
   steps:
   - intent: thanks
   - action: utter_welcome

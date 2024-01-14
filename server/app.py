@@ -165,7 +165,7 @@ def get_jobs():
     if len(result) > 0:
         return {"status": "success", "jobs": result}
     else:
-        return {"status": "error", "message": "I could not find any jobs for that category. If you want to add jobs for that category, please login as a job poster."}
+        return {"status": "error", "message": "I could not find any jobs for that category. If you want to add jobs for that category, please login as a job poster. Of you can try another category 'Machine Learning' or 'Software Engineer' for example."}
 
 # Update user preferences
 @app.route('/update_preferences/', methods=["POST"])
