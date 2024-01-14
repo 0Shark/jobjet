@@ -4,6 +4,7 @@ Dema, Elmer, 22211551 <br>
 Zaganjori, Juled, 22206337
 
 Repository: https://mygit.th-deg.de/jz19337/speech-assistant
+Demo video: https://youtu.be/MOuMk_GJ0Nw
 
 ## Project description
 
