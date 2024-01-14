@@ -7,17 +7,20 @@ Repository: https://mygit.th-deg.de/jz19337/speech-assistant
 
 ## Project description
 
-JobJet is a career service chatbot that helps job seekers find the right job. It is built using Rasa and Python. You can find the structure of the chatbot at https://mygit.th-deg.de/jz19337/speech-assistant/-/wikis/Home. The project structure is as follows: <br>
+JobJet is a career service chatbot that helps job seekers find the right job. It is built using Rasa and Python.
 
-```
-in progress...
-```
+JobJet offers a login and registration option for users. After logging in, the user can choose between three different personas: a student, a recruiter, and a job poster. Each persona has different options and functionalities, which are described in the wiki.
+
+Actions that the chatbot can perform include:
+- View job offers
+- Apply for jobs
+- Post new jobs, scraped from LinkedIn
+- Invite candidates
+- View job candidates
+
+You can learn everything about the chatbot at https://mygit.th-deg.de/jz19337/speech-assistant/-/wikis/Home. 
 
 ## Installation
-
-<!-- Descriptions of the used packages with versions, e.g. Python 3.10, rasa 3.6.12, ...
-
-Description of the steps after cloning the MyGit repository (setting up a venv, installing the packages, test of the setup, ...). -->
 
 ### Requirements
 
@@ -46,14 +49,26 @@ pip install -r requirements.txt
 
 ## Basic Usage
 
-How to start the chatbot after installation is complete (typically with `rasa run` and `rasa shell`)
+First, you need to train the model
 ```bash
-rasa run
+rasa train
 ```
 
-Example of a typical conversation
+After that, you need to start the action server
+```bash
+rasa run actions
 ```
-(TODO: Add example conversation image)
+
+In a new terminal, you need to start the API server.
+Go to the directory `server` and run
+```bash
+cd server
+python app.py
+```
+
+Then, you can run the chatbot on another terminal
+```bash
+rasa shell
 ```
 
 ## Implementation of the Requests
@@ -66,20 +81,27 @@ Requests are
 - Find the technical prerequisites [DONE]
 - For every persona at least 2 example dialogs [DONE]
 - A dialog flow [DONE]
-- Implementation in rasa (yaml and Python files)
+- Implementation in rasa (yaml and Python files) [DONE]
 
 ## Work done
 
 ### Juled Zaganjori
 
 - [x] Create a repository on MyGit
-- [x] Maintain Wiki page
 - [x] Develop project structure and dialog flow
+- [x] Implement login and registration system in Rasa
+- [x] Implement view job offers and apply for jobs in Rasa
+- [x] Implement invite candidates and view job candidates
+- [x] Create job scraper for LinkedIn
 
 ### Elmer Dema
 
 - [x] Maintain Wiki page
 - [x] Develop project structure and dialog flow
+- [x] Create a login and registration endpoints in flask API
+- [x] Create view job offers and apply for jobs endpoints in flask API
+- [x] Create invite candidates endpoint in flask API
+- [x] Create view job candidates endpoint in flask API
 
 ## References
 
