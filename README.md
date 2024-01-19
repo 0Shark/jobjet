@@ -1,9 +1,13 @@
-# Career Services Chatbot - "JobJet"
+Dema, Elmer, 22211551
 
-Dema, Elmer, 22211551 <br>
 Zaganjori, Juled, 22206337
 
+# Career Services Chatbot - "JobJet"
+
 Repository: https://mygit.th-deg.de/jz19337/speech-assistant
+
+Wiki: https://mygit.th-deg.de/jz19337/speech-assistant/-/wikis/Home. 
+
 Demo video: https://youtu.be/MOuMk_GJ0Nw
 
 ## Project description
@@ -21,15 +25,13 @@ Actions that the chatbot can perform include:
 
 You can learn everything about the chatbot at https://mygit.th-deg.de/jz19337/speech-assistant/-/wikis/Home. 
 
-## Installation
-
-### Requirements
+## Prerequisites
 
 - Python 3.10.13
 - Rasa 3.6.12
 - Rasa SDK 3.6.2
 
-### Installation steps
+## Installation
 
 1. Clone the repository
 ```
